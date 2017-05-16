@@ -1,5 +1,11 @@
 import feedparser
-from dateutil import parser
+from pymongo import MongoClient
+
+client = MongoClient() #connect mongoclient to an instance of mogod
+db = client.webevents #create a db test
+
+#collections = db["sample"]
+
 
 
 def get_events(url):
@@ -16,11 +22,19 @@ def get_events(url):
 		# Check the keys present in each event
 		print entry.keys()
 		# Assume all events have: title, summary, and link
+		#list_of_content["title"]=entry['title']
+		#list_of_content["summary"]=	entry['summary']
+		#list_of_content["link"]=entry['link']
 		title = entry['title']
 		summary = entry['summary']
 		link = entry['link']
-		title_and_summary = {"title" :title, "summary" :summary, "url" :link}
+		author=entry['author_detail']
+		category = entry['tags']
+		title_and_summary = {"title" :title, "summary" :summary, "url" :link,"author" :author,"category" :category}
+		result = db.events.insert_one(title_and_summary)
+		result.inserted_id
 		list_of_content.append(title_and_summary)
+
 	return list_of_content
 
 if __name__ == "__main__":
