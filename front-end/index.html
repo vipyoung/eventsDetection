@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>QEvents</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- carousel link -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
+</head>
+<!--<div class="row">-->
+    <!-- CONTAINER DIV -->
+	<div class="container-fluid" style="margin-left:-1%;margin-right: -2%;background-color: #F6F6F6;">
+	    <!-- Menu -->
+	    <div class="side-menu" style="overflow-y: scroll;overflow-x: hidden;background-color: #F6F6F6;">
+	        <nav class="navbar navbar-default" role="navigation" style="background-color: #F6F6F6">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	            <!-- SEARCH PART -->
+	            <div class="navbar-header">
+	                <div class="brand-wrapper">
+	                    <button type="button" class="navbar-toggle">
+	                        <span class="sr-only">Toggle navigation</span>
+	                        <span class="icon-bar"></span>
+	                        <span class="icon-bar"></span>
+	                        <span class="icon-bar"></span>
+	                    </button>
+	                    <!-- Brand -->
+	                    <div class="brand-name-wrapper" style="background-color: white;">
+	                        <a id="logo" class="navbar-brand" href="#" style="color:black;background-color:#F6F6F6; "><strong style="color: #4D2C3D">Q</strong>Events</a>
+	                    </div><!-- END BRAND -->
+	                    <!-- Search -->
+	                    <a data-toggle="collapse" href="#search" class="btn btn-default" id="search-trigger">
+	                        <span class="glyphicon glyphicon-search"></span>
+	                    </a>
+	                    <!-- Search body -->
+	                    <div id="search" class="panel-collapse collapse">
+	                        <div class="panel-body">
+	                            <form class="navbar-form" role="search">
+	                                <div class="form-group">
+	                                    <input type="text" id="myInput" style="background-color:#F6F6F6;" onkeyup="myFunction()" class="form-control" placeholder="Search">
+	                                </div>
+	                            </form>
+	                        </div>
+	                    </div>
+	                    <!-- END SEARCH BODY -->
+	                </div>
+	            </div>
+	            <!-- END SEARCH PART -->
+
+	            <!-- Main Menu -->
+	            <div class="side-menu-container" style="background-color:white">
+	                <ul class="nav navbar-nav" style="max-width: 103%;background-color:#F6F6F6;">
+	                    <li><button class="btn btn-sample" id="defaultView" style="width: 100%;margin-top: .5em;">Default View</button></li>
+	                    <!-- Dropdown-->
+	                    <li class="panel panel-default" id="dropdown">
+	                        <a data-toggle="collapse" href="#dropdown-lvl1">
+	                            <span class="glyphicon glyphicon-filter "></span> Filter Events <span class="caret"></span>
+	                        </a>
+	                        <!-- Dropdown level 1 -->
+	                        <div id="dropdown-lvl1" class="panel-collapse collapse">
+	                            <div class="panel-body">
+	                                <ul id="EventsFilter" class="nav navbar-nav"></ul>                                
+	                            </div>
+	                        </div>
+							<ul id="myUL" class="nav navbar-nav" style="width:100%;background-color:rgba(77,44,61,0.1)"></ul>
+						</li>
+					</ul>
+	            </div>
+	            <!-- END MAIN MENU -->
+
+			</nav>
+		</div>
+
+
+<!--</div>-->
+
+ 	<!-- Map Content -->
+    <div id="mapid" class="container-fluid row-sm" style="background-color: maroon;color:maroon;clear: both;margin-left: 15%;height: 100%;z-index:1;">
+      <!--   <div class="side-body" style="background-color: red;"> -->
+           <h1 style="color: maroon;">.......................................................................................................
+           .....................................................................................................
+           ........................................................................................................
+           ....................................................................................................
+           ............................................................................................................
+           ...........................................................................................................
+           ..............................................................................................................
+           ............................................................................................................
+             ...........................................................................................................
+           ..............................................................................................................
+           ............................................................................................................
+           ............................................................................................................
+           ..........................................................................................................
+           ..........................................................................................................
+           ............................................................................................................
+           ..........................................................................................................
+           ..........................................................................................................
+           ..............................................................................................................
+           .............................................................................................................
+           ..............................................................................................................
+           ...............................................................................................................</h1>  
+       <!--  </div> -->
+    </div>
+     <!-- END Map Content -->
+		<!-- CAROUSEL -->
+       <div  id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" >
+
+            <!-- Indicators -->
+            <ol id="carouselCounter" class="carousel-indicators"> </ol>
+
+            <!-- Wrapper For Slides -->
+            <div id="carouselWrapper" id="carouselWrapper" class="carousel-inner" role="listbox">            
+
+
+            </div><!-- End of Wrapper For Slides -->
+
+            <!-- Left Control -->
+            <a class="left carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="prev">
+                <span class="fa fa-angle-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <!-- Right Control -->
+            <a class="right carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="next">
+                <span class="fa fa-angle-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+        </div> <!-- End  bootstrap-touch-slider Slider -->
+ 
+
+
+
+</div>
+<!-- End CONTAINER DIV -->
+	<script type="text/javascript"  src="js/index.js"></script>
+	</body>
+
+</html>
+
+<!-- colors: green :rgba(21,87,101,0.1); maroon:rgba(77,44,61,0.3)-->
