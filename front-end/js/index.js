@@ -275,7 +275,7 @@ function renderSwitches() {
     output4 = '';
 
     for (var i = 0; i < CatArr.length; i++) {
-        output4 += ' <li>' + CatArr[i] + ' <div class="material-switch pull-right CB" >';
+        output4 += ' <li class="CBtxt">' + CatArr[i] + ' <div class="material-switch pull-right CB" >';
         if (ColDict[i] == "default") {
             output4 += '<input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox" checked="checked"/><label for="someSwitchOptionDefault" class="label-default"></label></div></li>';
         }

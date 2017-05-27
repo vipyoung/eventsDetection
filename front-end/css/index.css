@@ -8,7 +8,7 @@
 
 .side-menu {
   position: fixed;
-  width: 300px;
+  width: 52vh;
   height: 100%;
   background-color:white; /*#f8f8f8;*/
   border-right: 1px solid #e7e7e7;
@@ -45,7 +45,8 @@
 }
 .side-menu #dropdown .caret {
   float: right;
-  margin: 9px 5px 0;
+  margin-top: 2vh;
+  /*margin: 9px 5px 0;*/
 }
 .side-menu #dropdown .indicator {
   float: right;
@@ -58,24 +59,24 @@
   background-color: white;/*#f3f3f3;*/
 }
 .side-menu #dropdown .panel-body .navbar-nav {
-  width: 100%;
+ /* width: 100%;*/
 }
 .side-menu #dropdown .panel-body .navbar-nav li {
-  padding-left: 15px;
+  /*padding-left: 15px;*/
   border-bottom: 1px solid white;/*#e7e7e7;*/
 }
 .side-menu #dropdown .panel-body .navbar-nav li:last-child {
   border-bottom: none;
 }
 .side-menu #dropdown .panel-body .panel > a {
-  margin-left: -20px;
-  padding-left: 35px;
+/*  margin-left: -20px;
+  padding-left: 35px;*/
 }
 .side-menu #dropdown .panel-body .panel-body {
-  margin-left: -15px;
+/*  margin-left: -15px;*/
 }
 .side-menu #dropdown .panel-body .panel-body li {
-  padding-left: 30px;
+ /* padding-left: 30px;*/
 }
 .side-menu #dropdown .panel-body .panel-body li:last-child {
   border-bottom: 1px solid white;/*#e7e7e7;*/
@@ -119,8 +120,8 @@
   border-radius: 0;
   box-shadow: none;
   width: 100%;
-  height: 50px;
-}
+  height: 7vh;/*50px;
+*/}
 .side-menu #search .panel-body .navbar-form .btn {
   position: absolute;
   right: 0;
@@ -132,7 +133,7 @@
 }
 /* Main body section */
 .side-body {
-  margin-left: 310px;
+  /*margin-left: 310px;*/
 }
 /* small screen */
 @media (max-width: 768px) {
@@ -208,7 +209,7 @@
   .side-menu-container > .navbar-nav {
     /* Add position:absolute for scrollable menu -> see top comment */
     position: fixed;
-    left: -300px;
+    /*left: -300px;*/
     width: 300px;
     top: 43px;
     height: 100%;
@@ -303,7 +304,7 @@
   .navbar-toggle {
     border: 0;
     float: left;
-    padding: 18px;
+   /* padding: 18px;*/
     margin: 0;
     border-radius: 0;
     background-color: white;/*#f3f3f3;*/
@@ -387,20 +388,21 @@
 }
 /*Reference:http://bootsbin.com/bins/change-scrollbar-style-bootstrap/*/
 
-.CB{
-  padding:3% 0%;
-}
+
+
+
 #logo{
   background-color: #FAFAFF;
-  font-size: 150%;
+  font-size: 200%;
   z-index: 200px;
     border:thick solid black;
+    height: 7vh;
     /*border-radius: .25em;*/
  /*  border-bottom:thick solid black;*/
    /*float: left;*/
  /*  padding: -1000px 0px;*/
    margin:-.01em 0em 0em .5em ;
-   padding-right: 4em;
+   padding-right: 6em;
    /*border-radius: 100%;*/
 }
 
@@ -774,7 +776,7 @@ fieldset[disabled] .btn-navygreen.active {
     font-weight: 400;
     font-size: 13px;
     line-height: 15px;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     text-align: center;
     padding: 17px 30px;
     white-space: nowrap;
@@ -868,13 +870,6 @@ fieldset[disabled] .btn-navygreen.active {
 }
 
 
-
-.carousel {
-  /* any dimensions are fine, it can be responsive with max-width */
-  width: 100%;/*300px;*/
-  height: 350px;
-}
-
 .carousel-inner {
   /* make sure your .items will get correct height */
   height: 100%;
@@ -890,3 +885,25 @@ fieldset[disabled] .btn-navygreen.active {
 .item img {
   visibility: hidden;
 }
+
+
+/*my edit*/
+/*check box*/
+.CB{
+  padding:3% 0%;
+  margin-left: 7vh;
+  height: 5vh;
+}
+.CBtxt{
+  font-size: 140%;
+  margin-left:2vh;
+  color: #0F0F0F;
+  height: 5vh;
+
+}
+/*list items*/
+/*.nav-item .nav-link .panel .glyphicon{
+  font-size: 150%;
+  height:7vh;
+}*/
+/**/
