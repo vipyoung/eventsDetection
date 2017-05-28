@@ -46,6 +46,7 @@
 .side-menu #dropdown .caret {
   float: right;
   margin-top: 2vh;
+  margin-right: 2vh;
   /*margin: 9px 5px 0;*/
 }
 .side-menu #dropdown .indicator {
@@ -907,3 +908,4 @@ fieldset[disabled] .btn-navygreen.active {
   height:7vh;
 }*/
 /**/
+

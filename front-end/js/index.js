@@ -138,6 +138,7 @@ $.getJSON(link_to_data)
         //
         listOfEvents();
         //
+        manageLayers(); 
         $("li").click(function(event) {
             //console.log("clickedfirst?");
             var newID = event.target.id;
@@ -146,12 +147,14 @@ $.getJSON(link_to_data)
                     match(dictionary, CatArr, Events[i]);
                 }
             }
+
         });
         $(".material-switch").click(function(event) {
             //console.log("clicked2nd?");
             var newID = event.target.id;
             //console.log("switch")
             manageLayers();   
+            clearManualLayer();
         });
 
         $(document).ready(function() {
@@ -165,8 +168,10 @@ $.getJSON(link_to_data)
             map.setView([25.296637, 51.517686],12, {
                 animation: true,
                 center: [25.296637, 51.517686]
+
             });
-            renderSwitches();
+            // renderSwitches();
+            manageLayers()
         });
     })
     .fail(function(jqxhr, textStatus, error) {
@@ -263,9 +268,14 @@ function manageLayers(){
     if($("#someSwitchOptionInfo").is(':checked')){map.addLayer(violetLayer);}
     else{map.removeLayer(violetLayer);}
     
+    
+}
+
+function clearManualLayer(){
     for (var i=0; i<manualArr.length; i++) {
         manualLayer.removeLayer(manualArr[i]);
     }
+
 }
 
 //adds checkbox
@@ -301,6 +311,7 @@ function renderSwitches() {
 //
 function match(dictionary, CatArr, Event) {
     //add the event's pin with a popup
+    clearManualLayer();
     var dictValues = dictionary[Event];
 
     var string = '<a href="';
@@ -342,6 +353,7 @@ function match(dictionary, CatArr, Event) {
         }).bindPopup(string)
         marker.addTo(manualLayer).openPopup();;
     manualArr.push(marker);
+
 }
 
 //search 
