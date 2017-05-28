@@ -393,17 +393,17 @@
 
 
 #logo{
-  background-color: #FAFAFF;
+/*  background-color: #FAFAFF;
   font-size: 200%;
   z-index: 200px;
     border:thick solid black;
-    height: 7vh;
+    height: 7vh;*/
     /*border-radius: .25em;*/
  /*  border-bottom:thick solid black;*/
    /*float: left;*/
  /*  padding: -1000px 0px;*/
-   margin:-.01em 0em 0em .5em ;
-   padding-right: 6em;
+  /* margin:-.01em 0em 0em .5em ;
+   padding-right: 6em;*/
    /*border-radius: 100%;*/
 }
 
@@ -909,3 +909,55 @@ fieldset[disabled] .btn-navygreen.active {
 }*/
 /**/
 
+
+/*MAROON BUTTON*/
+.btn-maroon { 
+  color: #FFFFFF; 
+  background-color: #A03033; 
+  border-color: #A03033; 
+} 
+ 
+.btn-maroon:hover, 
+.btn-maroon:focus, 
+.btn-maroon:active, 
+.btn-maroon.active, 
+.open .dropdown-toggle.btn-maroon { 
+  color: #FFFFFF; 
+  background-color: #A03033; 
+  border-color: #A03033; 
+} 
+ 
+.btn-maroon:active, 
+.btn-maroon.active, 
+.open .dropdown-toggle.btn-maroon { 
+  background-image: none; 
+} 
+ 
+.btn-maroon.disabled, 
+.btn-maroon[disabled], 
+fieldset[disabled] .btn-maroon, 
+.btn-maroon.disabled:hover, 
+.btn-maroon[disabled]:hover, 
+fieldset[disabled] .btn-maroon:hover, 
+.btn-maroon.disabled:focus, 
+.btn-maroon[disabled]:focus, 
+fieldset[disabled] .btn-maroon:focus, 
+.btn-maroon.disabled:active, 
+.btn-maroon[disabled]:active, 
+fieldset[disabled] .btn-maroon:active, 
+.btn-maroon.disabled.active, 
+.btn-maroon[disabled].active, 
+fieldset[disabled] .btn-maroon.active { 
+  background-color: #A03033; 
+  border-color: #A03033; 
+} 
+ 
+.btn-maroon .badge { 
+  color: #A03033; 
+  background-color: #FFFFFF; 
+}
+
+
+.popup_txt{
+  font-size: 20px;
+}

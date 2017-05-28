@@ -207,7 +207,11 @@ function processData(dictionary) {
 //
 function plot_marker(eventDict) {
     //create popup message
-    var string = '<a href="';
+    var string='';
+    if (eventDict.image != null) {
+        string +='<div><img src="'+eventDict.image+'" style="width:100%;"></br></div><br>';
+    }
+    string += '<a class="popup_txt" href="';
     if (eventDict.link != null) {
         string += eventDict.link;
     } else {
@@ -219,17 +223,19 @@ function plot_marker(eventDict) {
     }
     string += '</a>';
     if (eventDict.event_venue != null) {
-        string += '<br>' + 'Hosted by: ' + eventDict.event_venue;
+        string +='<div class="popup_txt"> <strong>Hosted by:</strong> ' + eventDict.event_venue+'</div>';
     }
     if (eventDict.event_date != null) {
-        string += '<br>' + 'Date: ' + eventDict.event_date;
+        string +=  '<div class="popup_txt"> <strong>Date:</strong> ' + eventDict.event_date+'</div>';
     }
     if (eventDict.Starts != null) {
-        string += '<br>' + 'Starts at: ' + eventDict.Starts;
+        string += '<div class="popup_txt"><strong> Starts at:</strong> ' + eventDict.Starts+'</div>';
     }
     if (eventDict.Ends != null) {
-        string += '<br>' + 'Ends at: ' + eventDict.Ends;
+        string += '<div class="popup_txt"><strong>Ends at:</strong> ' + eventDict.Ends+'</div></br>';
     }
+    
+
     //
     var eventIndx = CatArr.indexOf(eventDict.category);
     var event_icon = iconArr[eventIndx];
@@ -241,7 +247,7 @@ function plot_marker(eventDict) {
     var longitude = eventDict.longitude;
     var marker = L.marker([latitude, longitude], {
         icon: event_icon
-    }).bindPopup(string);
+    }).bindPopup(string,{minWidth:600});
     marker.addTo(mapLayer);
     mapArr.push(marker);
 }
@@ -314,7 +320,11 @@ function match(dictionary, CatArr, Event) {
     clearManualLayer();
     var dictValues = dictionary[Event];
 
-    var string = '<a href="';
+    var string='';
+    if (dictValues.image != null) {
+        string +='<div><img src="'+dictValues.image+'" style="width:100%;"></br></div><br>';
+    }
+    string += '<a class="popup_txt" href="';
     if (dictValues.link != null) {
         string += dictValues.link;
     } else {
@@ -326,16 +336,16 @@ function match(dictionary, CatArr, Event) {
     }
     string += '</a>';
     if (dictValues.event_venue != null) {
-        string += '<br>' + 'Hosted by: ' + dictValues.event_venue;
+        string +='<div class="popup_txt"> <strong>Hosted by:</strong> ' + dictValues.event_venue+'</div>';
     }
     if (dictValues.event_date != null) {
-        string += '<br>' + 'Date: ' + dictValues.event_date;
+        string +=  '<div class="popup_txt"> <strong>Date:</strong> ' + dictValues.event_date+'</div>';
     }
     if (dictValues.Starts != null) {
-        string += '<br>' + 'Starts at: ' + dictValues.Starts;
+        string += '<div class="popup_txt"><strong> Starts at:</strong> ' + dictValues.Starts+'</div>';
     }
     if (dictValues.Ends != null) {
-        string += '<br>' + 'Ends at: ' + dictValues.Ends;
+        string += '<div class="popup_txt"><strong>Ends at:</strong> ' + dictValues.Ends+'</div></br>';
     }
     //console.log(dictValues)
     map.panTo([dictValues.latitude, dictValues.longitude], {

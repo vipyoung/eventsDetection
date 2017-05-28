@@ -18,22 +18,22 @@
 <body>
     <div class="container-fluid">
 
-        <div class="row" style="background-color: beige;height:150vh;"> 
+        <div class="row" style="background-color: white;height:100vh;"> 
             <div class="col-md-3" style="background-color: white;height:100vh;position: fixed;float: left;">
                         <!-- Menu -->
-                <div class="side-menu" style="overflow-y: scroll;overflow-x: hidden;background-color: #F6F6F6;margin-left:-2vh;">
+                <div class="side-menu" style="overflow-x: hidden;background-color: #F6F6F6;margin-left:-2vh;">
                     <nav class="navbar navbar-default" role="navigation" style="background-color: #F6F6F6">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <!-- SEARCH PART -->
                         <div class="navbar-header">
                             <div class="brand-wrapper">
                                 <!-- Brand -->
-                                <div class="brand-name-wrapper" style="background-color: white;height: 7vh;">
-                                    <a id="logo" class="navbar-brand" href="#" style="color:black;background-color:#F6F6F6; "><strong style="color: #4D2C3D;height: 7vh;">Q</strong>Events</a>
+                                <div class="brand-name-wrapper" style="background-color: white;height: 10vh;">
+                                    <a id="logo" class="navbar-brand" href="#" ><img src="logo/logo1.png" style="width:25vh;margin-top: -2vh;margin-left: 8vh;"> </a>
                                 </div><!-- END BRAND -->
                                 <!-- Search -->
                                 <a data-toggle="collapse" href="#search" class="btn btn-default" id="search-trigger">
-                                    <span class="glyphicon glyphicon-search" style="height: 4vh;width: 3vh;"></span>
+                                    <span class="glyphicon glyphicon-search" style="height: 4vh;width: 3vh;margin-top: 3vh;"></span>
                                 </a>
                                 <!-- Search body -->
                                 <div id="search" class="panel-collapse collapse">
@@ -53,11 +53,11 @@
                         <!-- Main Menu -->
                         <div class="side-menu-container" style="background-color:white">
                             <ul class="nav navbar-nav" style="background-color:#F6F6F6;">
-                                <li><button class="btn btn-sample" id="defaultView" style="width: 50vh;margin-top: .5em;height: 4vh;font-size: 120%;">Default View</button></li>
+                                <li><button class="btn btn-maroon" id="defaultView" style="width: 51vh;margin-top: .5em;height: 4vh;font-size: 120%;">Default View</button></li>
                                 <!-- Dropdown-->
                                 <li class="panel panel-default" id="dropdown" style="height: 5vh;">
                                     <a data-toggle="collapse" href="#dropdown-lvl1" style="height: 5vh;font-size: 150%;padding:1% 0;padding-bottom: 5vh;padding-top: 2vh;">
-                                        <span class="glyphicon glyphicon-filter " style="height: 5vh;"></span> Filter Events <span class="caret"></span>
+                                        <span class="glyphicon glyphicon-filter " style="height: 5vh;"></span> Filter by Category <span class="caret"></span>
                                     </a>
                                     <!-- Dropdown level 1 -->
                                     <div id="dropdown-lvl1" class="panel-collapse collapse" style="font-size: 100%;">
@@ -65,7 +65,7 @@
                                             <ul id="EventsFilter" class="nav navbar-nav"></ul>                                
                                         </div>
                                     </div>
-                                    <ul id="myUL" class="nav navbar-nav" style="width:100%;background-color:rgba(77,44,61,0.1);font-size: 150%;"></ul>
+                                    <ul id="myUL" class="nav navbar-nav" style="width:100%;background-color:rgb(160,48,51,0.1);font-size: 150%;"></ul>
                                 </li>
                             </ul>
                         </div>
@@ -75,9 +75,14 @@
         </div>
 
 
+        </div>
+            <div id="mapid" class="col-md-9" style="background-color: maroon;float: right;height:100vh;"></div>
+        </div>
+
+
             </div>
-            <div class="col-md-9" style="background-color:black;float: right;height:67vh;">
-                       <div  id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" >
+            <div class="col-md-9" style="background-color:white;float: right;height:40vh;margin-left: -5vh;padding-left: -1vh;margin-top: 2vh;z-index: -2;">
+                       <div  id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" style="height:40vh;" >
 
                     <!-- Indicators -->
                     <ol id="carouselCounter" class="carousel-indicators"> </ol>
@@ -103,9 +108,7 @@
         </div> <!-- End  bootstrap-touch-slider Slider -->
  
 
-            </div>
-            <div id="mapid" class="col-md-9" style="background-color: maroon;float: right;height:100vh;"></div>
-        </div>
+            
 
         
     </div>
