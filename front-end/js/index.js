@@ -144,7 +144,7 @@ $.getJSON(link_to_data)
             var newID = event.target.id;
             for (var i = 0; i < Events.length; i++) {
                 if (this.id == Events[i]) {
-                    match(dictionary, CatArr, Events[i]);
+                    zoom_to_pin(dictionary, CatArr, Events[i]);
                 }
             }
 
@@ -158,8 +158,8 @@ $.getJSON(link_to_data)
         });
 
         $(document).ready(function() {
-            $("#myInput").keyup(function() {
-                myFunction();
+            $("#search_input").keyup(function() {
+                search_function();
             });
         });
         $("#defaultView").click(function(event) {
@@ -315,7 +315,7 @@ function renderSwitches() {
     }
 }
 //
-function match(dictionary, CatArr, Event) {
+function zoom_to_pin(dictionary, CatArr, Event) {
     //add the event's pin with a popup
     clearManualLayer();
     var dictValues = dictionary[Event];
@@ -367,11 +367,11 @@ function match(dictionary, CatArr, Event) {
 }
 
 //search 
-function myFunction() {
+function search_function() {
     var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
+    input = document.getElementById("search_input");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
+    ul = document.getElementById("list_of_events");
     li = ul.getElementsByTagName("li");
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
@@ -410,14 +410,14 @@ function listOfEvents() {
         //     eventsListOutput += '<li ><a href="#" class="header">' + Events[i][0].toUpperCase() + '</a></li>';
         // }
         eventsListOutput += '<li class="nav-item" id="' + Events[i] + '"><a class="nav-link" href="#" >' + Events[i] + '</a></li>';
-        // eventsListOutput+='<li><a href="#" onmouseup=clearTimeout(myVar)'+'onmouseup="match(\''+Events[i]+'\')">'+Events[i]+'</a></li>';
+        // eventsListOutput+='<li><a href="#" onmouseup=clearTimeout(myVar)'+'onmouseup="zoom_to_pin(\''+Events[i]+'\')">'+Events[i]+'</a></li>';
         //eventsListOutput+='<li><a href="#" '+'onmouseup="controlMap(\''+Events[i]+'\')">'+Events[i]+'</a></li>';
-        // eventsListOutput += '<li><a href="#" ' + 'onmousedown="match(\'' + Events[i] + '\')">' + Events[i] + '</a></li>';
-        // eventsListOutput+='<li><a href="#" '+'onmouseup="match('+Events[i]+')">'+Events[i]+'</a></li>';
+        // eventsListOutput += '<li><a href="#" ' + 'onmousedown="zoom_to_pin(\'' + Events[i] + '\')">' + Events[i] + '</a></li>';
+        // eventsListOutput+='<li><a href="#" '+'onmouseup="zoom_to_pin('+Events[i]+')">'+Events[i]+'</a></li>';
         // eventsListOutput+='<li><a href="#">'+Events[i]+'</a></li>';
         //eventsListOutput+='<li><a href="#" '+'onmouseup="'+ EventZoom=Events[i]+')">'+Events[i]+'</a></li>';
     }
-     document.getElementById("myUL").innerHTML = eventsListOutput;
+     document.getElementById("list_of_events").innerHTML = eventsListOutput;
 }
 
 
