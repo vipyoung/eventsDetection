@@ -138,7 +138,7 @@ $.getJSON(link_to_data)
         //
         listOfEvents();
         //
-        manageLayers(); 
+        manageLayers(dictionary); 
         $("li").click(function(event) {
             //console.log("clickedfirst?");
             var newID = event.target.id;
@@ -153,7 +153,7 @@ $.getJSON(link_to_data)
             //console.log("clicked2nd?");
             var newID = event.target.id;
             //console.log("switch")
-            manageLayers();   
+            manageLayers(dictionary);   
             clearManualLayer();
         });
 
@@ -171,7 +171,7 @@ $.getJSON(link_to_data)
 
             });
             // renderSwitches();
-            manageLayers()
+            manageLayers(dictionary)
         });
     })
     .fail(function(jqxhr, textStatus, error) {
@@ -252,28 +252,58 @@ function plot_marker(eventDict) {
     mapArr.push(marker);
 }
 //
-function manageLayers(){
+function manageLayers(dictionary){
     //console.log("called",$("#someSwitchOptionPrimary").is(':checked'));
     // map.removeLayer(blueLayer);
     // map.addLayer(blueLayer); 
-    if($("#someSwitchOptionPrimary").is(':checked')){map.addLayer(blueLayer);}
-    else{map.removeLayer(blueLayer);}
+   
+       // a = li[i].getElementsByTagName("a")[0];
 
-    if($("#someSwitchOptionDefault").is(':checked')){map.addLayer(greyLayer);}
-    else{map.removeLayer(greyLayer);}
+        if($("#someSwitchOptionPrimary").is(':checked')){map.addLayer(blueLayer);}
+        else{map.removeLayer(blueLayer);}
 
-    if($("#someSwitchOptionSuccess").is(':checked')){map.addLayer(greenLayer);}
-    else{map.removeLayer(greenLayer);}
+        if($("#someSwitchOptionDefault").is(':checked')){map.addLayer(greyLayer);}
+        else{map.removeLayer(greyLayer);}
 
-    if($("#someSwitchOptionDanger").is(':checked')){map.addLayer(redLayer);}
-    else{map.removeLayer(redLayer);}
+        if($("#someSwitchOptionSuccess").is(':checked')){map.addLayer(greenLayer);}
+        else{map.removeLayer(greenLayer);}
 
-    if($("#someSwitchOptionWarning").is(':checked')){map.addLayer(orangeLayer);}
-    else{map.removeLayer(orangeLayer);}
+        if($("#someSwitchOptionDanger").is(':checked')){map.addLayer(redLayer);}
+        else{map.removeLayer(redLayer);}
 
-    if($("#someSwitchOptionInfo").is(':checked')){map.addLayer(violetLayer);}
-    else{map.removeLayer(violetLayer);}
+        if($("#someSwitchOptionWarning").is(':checked')){map.addLayer(orangeLayer);}
+        else{map.removeLayer(orangeLayer);}
+
+        if($("#someSwitchOptionInfo").is(':checked')){map.addLayer(violetLayer);}
+        else{map.removeLayer(violetLayer);}
     
+      ul = document.getElementById("list_of_events");
+      li = ul.getElementsByTagName("li");
+      for (i = 0; i < li.length; i++) {
+        var dictValues = dictionary[li[i].id];
+        var eventIndx = CatArr.indexOf(dictValues.category);
+        var category_color=colArr[eventIndx];
+        console.log(category_color);
+        if(!$("#someSwitchOptionPrimary").is(':checked') && category_color=="blue"){li[i].style.display = "none";}
+        else{li[i].style.display = "";}
+
+        if(!$("#someSwitchOptionDefault").is(':checked') && category_color=="grey"){li[i].style.display = "none";}
+        else if(category_color=="grey"){li[i].style.display = "";}
+
+        if(!$("#someSwitchOptionSuccess").is(':checked') && category_color=="green"){li[i].style.display = "none";}
+        else if(category_color=="green"){li[i].style.display = "";}
+
+        if(!$("#someSwitchOptionDanger").is(':checked') && category_color=="red"){li[i].style.display = "none";}
+        else if(category_color=="red"){li[i].style.display = "";}
+
+        if(!$("#someSwitchOptionWarning").is(':checked') && category_color=="orange"){li[i].style.display = "none";}
+        else if(category_color=="orange"){li[i].style.display = "";}
+
+        if(!$("#someSwitchOptionInfo").is(':checked') && category_color=="violet"){li[i].style.display = "none";}
+        else if(category_color=="violet"){li[i].style.display = "";}
+
+    }
+   
     
 }
 
@@ -376,7 +406,7 @@ function search_function() {
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
         if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
+           // li[i].style.display = "";
         } else {
             li[i].style.display = "none";
         }
