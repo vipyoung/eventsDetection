@@ -83,13 +83,14 @@ class EventScarper:
         entities = self.tagger.get_entities(clean_info)
         # info obtained from pyner both locations and organizations are considered
         if entities.get('LOCATION')!= None:
-            location = self.clean_location(entities.get('LOCATION'))
+            location = entities.get('LOCATION')
+            #location = self.clean_location(entities.get('LOCATION'))
             locations.append(location)
         if entities.get('ORGANIZATION')!= None:
-            organization = self.clean_location(entities.get('ORGANIZATION'))
+            organization = entities.get('ORGANIZATION')
+            #organization = self.clean_location(entities.get('ORGANIZATION'))
             locations.append(organization)
 
-        """
         # TODO: double check
         cleaned_locations = []
         # remove the unicoded output of beautifulsoup
@@ -97,14 +98,13 @@ class EventScarper:
             for j in range(len(locations[i])):
                 cleaned_locations.append(locations[i][j].encode("utf-8"))
         print cleaned_locations
-        """
 
         geocoded_location = {}
-        for i in range(len(locations)):
-            location = self.geo.google_geocoding(locations[i])
-            print self.geo.google_geocoding(locations[i])
+
+        for i in range(len(cleaned_locations)):
+            print self.geo.google_geocoding(cleaned_locations[i])
             # storing in the different location and their geocodes in a dict
-            geocoded_location[locations[i]] = location
+            geocoded_location[cleaned_locations[i]] = self.geo.google_geocoding(cleaned_locations[i])
 
         # extracting the images of each event
         for image_tag in soup.findAll(lambda tag: tag.name == 'div' and tag.get('class') == ['single-post-thumb']):
@@ -126,12 +126,14 @@ class EventScarper:
         self.event_dict['features'].append(feature)
         return self.event_dict
 
+    """
+
     def clean_location(self, location_set):
         clean_location = set()
         for j in range(len(location_set)):
             clean_location[j] = location_set[j].encode("utf-8")
         return clean_location
-
+    """
     def export_json(self, information):
         with open('events.json', 'w') as f:
             json.dump(information, codecs.getwriter('utf-8')(f), ensure_ascii=False)
