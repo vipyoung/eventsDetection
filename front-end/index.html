@@ -14,6 +14,23 @@
     <!-- carousel link -->
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
      <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+
 </head>
 <body>
     <div class="container-fluid">
@@ -54,15 +71,51 @@
                         <div class="side-menu-container" style="background-color:white">
                             <ul class="nav navbar-nav" style="background-color:#F6F6F6;">
                                 <li><button class="btn btn-maroon" id="defaultView" style="width: 51vh;margin-top: .5em;height: 4vh;font-size: 120%;">Default View</button></li>
+                                 <li><button class="btn btn-maroon" id="plotCustomMarker" style="width: 51vh;margin-top: .5em;height: 4vh;font-size: 120%;">Show nearby events</button></li>
+                                 <li class="inline">
+                                 <label class="inline" style="padding-right:10px">Choose Raduis in km</label>
+                                <!--  <div class="btn-toolbar inline"> -->
+                                      <div class="btn-toolbar btn-group"> 
+                                        <a id="radius1" href="#" class="btn btn-danger">1</a>
+                                        <a id="radius2" href="#" class="btn btn-default">2</a>
+                                        <a id="radius3" href="#" class="btn btn-default">3</a>
+                                        <a id="radius4" href="#" class="btn btn-default">4</a>
+                                        <a id="radius5" href="#" class="btn btn-default">5</a>
+                                        <a id="radius6" href="#" class="btn btn-default">6</a>
+                                        <a id="radius7" href="#" class="btn btn-default">7</a>
+                                      </div>
+                                      </li>
                                 <!-- Dropdown-->
                                 <li class="panel panel-default" id="dropdown" style="height: 5vh;">
                                     <a data-toggle="collapse" href="#dropdown-lvl1" style="height: 5vh;font-size: 150%;padding:1% 0;padding-bottom: 5vh;padding-top: 2vh;">
-                                        <span class="glyphicon glyphicon-filter " style="height: 5vh;padding-bottom:2px;z-index: 1000px;"></span> Filter by Category <span class="caret"></span>
+                                        <span class="glyphicon glyphicon-filter " style="height: 5vh;padding-bottom:2px;z-index: 1000px;"></span> Filter Options <span class="caret"></span>
                                     </a>
                                     <!-- Dropdown level 1 -->
                                     <div id="dropdown-lvl1" class="panel-collapse collapse" style="font-size: 100%;">
                                         <div class="panel-body">
-                                            <ul id="EventsFilter" class="nav navbar-nav"></ul>                                
+                                            <ul id="EventsFilter" class="nav navbar-nav"></ul>
+                                            <ul class="nav navbar-nav"><div class="container">
+                                            <h4>Show Events Starting from</h4>
+                                                 <div class="form-group" style="width: 46vh;">
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                    <input id="startingDate" type='text' class="form-control disabled" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                             <h4>to</h4>
+
+                                             <div class="form-group" style="width: 46vh;">
+                                                <div class='input-group date' id='datetimepicker2'>
+                                                    <input id="endingDate" type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                                                           
+                                </div></ul>                                
                                         </div>
                                     </div>
                                     <ul id="list_of_events" class="nav navbar-nav" style="width:100%;background-color:rgb(160,48,51,0.1);font-size: 150%;"></ul>
@@ -112,6 +165,17 @@
 
         
     </div>
+    <script type="text/javascript" src="js/moment.js"></script>
 <script type="text/javascript"  src="js/index.js"></script>
+  <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+              $(function () {
+                $('#datetimepicker2').datetimepicker();
+            });
+        </script>
+  
+        
 </body>
 </html>

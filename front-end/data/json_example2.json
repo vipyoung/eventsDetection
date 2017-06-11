@@ -1,5 +1,6 @@
 {  "Whose Line is it Anyway?" :  {
     "event_venue": "Grand Hyatt Doha",
+    "date": "  2017-08-07 00:00:00 2017-05-21 00:00:00",
     "event_date": "13 May 2017",
     "Starts": "8:30 pm",
     "Ends": null,
@@ -13,6 +14,7 @@
   "The Poot": {
     "event_venue": "Sheraton Grand Doha Hotel",
     "event_date": "Every Wednesday",
+    "date":"2017-07-06 22:00:00 2017-06-04 00:00:00",
     "Starts": "9:00 pm",
     "Ends":null,
     "link": "http://www.eventsdoha.com/dfi-cinema-presents-mia-exhibition-series-the-poot/",
@@ -24,12 +26,26 @@
   },
   "Season Closing Party":{
     "event_venue": "Oyster beach bar – St. Regis Hotel",
+    "date":" 2017-08-04 00:00:00 2017-06-04 21:00:00",
     "event_date": "Every Tuesday",
     "Starts": "8:00 PM",
     "Ends":null,
     "link":"http://www.eventsdoha.com/hotel-park-ramadan-festival-31st-may-to-7th-july-hotel-park-doha-corniche/",
     "latitude": 25.3504423,
     "longitude": 51.5278476,
+    "name":"Season Closing Party",
+    "category": "Night Life",
+    "image":"http://www.eventsdoha.com/wp-content/uploads/2017/05/new-eventcover-56-1024x576.jpg"
+  },
+  "Season Closing Party2":{
+    "event_venue": "Oyster beach bar – St. Regis Hotel",
+    "date":" 2017-06-30 00:00:00 2017-06-11 21:00:00",
+    "event_date": "Every Tuesday",
+    "Starts": "8:00 PM",
+    "Ends":null,
+    "link":"http://www.eventsdoha.com/hotel-park-ramadan-festival-31st-may-to-7th-july-hotel-park-doha-corniche/",
+    "latitude": 25.3504423,
+    "longitude": 51.5178476,
     "name":"Season Closing Party",
     "category": "Night Life",
     "image":"http://www.eventsdoha.com/wp-content/uploads/2017/05/new-eventcover-56-1024x576.jpg"
