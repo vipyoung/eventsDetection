@@ -49,12 +49,14 @@
     <!-- Material sidebar -->
     <aside id="sidebar" class="sidebar sidebar-default open" role="navigation">
         <!-- Sidebar header -->
+         <div id="logo" class="logoBox">
+        <div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo1.png);height:15vh;">
+            <div class="resize" >
+            </div>
+        </div>
+         
 
-        <div class="sidebar-header header-cover" style="position: relative;overflow-x: hidden;overflow-y: hidden; background-image:linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);">
-            <div style=" position: absolute;z-index: 10;text-align: center;">
-                <br> QEvents</div>
-
-            <div class="sidebar-header header-cover" style="position: relative;height:50%;width:10%;margin:-3px -3px; display: inline-block; background-image: url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);">
+           <!--  <div class="sidebar-header header-cover" style="position: relative;height:50%;width:10%;margin:-3px -3px; display: inline-block; background-image: url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);">
 
 
             </div>
@@ -64,7 +66,7 @@
             </div>
             <div class="sidebar-header header-cover" style="position: relative;height:50%;width:10%;margin:-3px -3px; display: inline-block; background-image: url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);">
 
-
+  
             </div>
             <div class="sidebar-header header-cover" style="position: relative;height:50%;width:10%; margin:-3px -3px;display: inline-block; background-image: url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);">
 
@@ -77,8 +79,10 @@
             <div class="sidebar-header header-cover" style="position: relative;height:50%;width:10%; display: inline-block;margin:-3px -3px;  background-image: url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);">
 
 
+            </div> -->
             </div>
-            <div style=" position: absolute;z-index: 10;">test</div>
+            </div>
+           <!--  <div style=" position: absolute;z-index: 10;">test</div>
             <div class="row text-center">
                 <h1>This is a beautiful background image<br> with a transparent overlay.</h1>
                 <h4>You can just use the "<strong>.bg-overlay</strong>" class on any container/element,<br>
@@ -88,7 +92,7 @@
                 <button type="button" class="btn btn-primary btn-lg">Get Started</button>
             </div>
 
-        </div>
+        </div> -->
 
         <!-- Sidebar navigation -->
         <ul class="nav sidebar-nav" >
@@ -107,6 +111,27 @@
                             </label>
                         </div>
                     </li>
+
+
+
+                    <li>
+                        <div id="spinnerContainer">
+                        <label style="margin-left: 8%;font-size: 15px;">Choose radius in Km</label>
+                        <div class="input-group spinner" style="margin-left: 10%;">
+                        
+                        <input type="text" id="radiusSpinner" class="form-control" value="0">
+                        <div class="input-group-btn-vertical">
+                          <button class="btn btn-default spinnerCLick" type="button"><i class="fa fa-caret-up"></i></button>
+                          <button class="btn btn-default spinnerCLick" type="button"><i class="fa fa-caret-down"></i></button>
+                        </div>
+                    </div>
+                    </li>
+
+
+
+
+
+
                     <li>
 
                         <div class="checkbox">
@@ -258,11 +283,12 @@
             </div>
             </ul>
             </li>
+            <li> <button id="defaultView" style="width: 100%">Default View</button></li>
            <li>
                <!-- <input type="text" id="search_input" style="width:35vh;margin: 2vh 1vh;" onkeyup="search_function()" class="form-control" placeholder="Search Events"> -->
                <input type="text" class="live-search-box" placeholder="Search Events" />
            </li>
-            <ul id="list_of_events" class="live-search-list" style="margin-left: -4vh;">
+            <ul id="list_of_events" class="live-search-list" style="margin-left: -4vh;height: 80vh;">
            <!--  <li>
                 <a href="#">
                 Trash
@@ -295,7 +321,7 @@
 
     <div class="wrapper">
         <!-- Sidebar Constructor -->
-        <div id="mapid" class="constructor" style="width: 169vh;height: 100vh;">
+        <div id="mapid" class="constructor" style="width: 153vh;height: 100vh;position: fixed;">
 
         </div>
     </div>

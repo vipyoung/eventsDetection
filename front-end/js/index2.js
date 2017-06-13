@@ -2,6 +2,7 @@ var EventZoom = 'none';
 var zoomVal = 11;
 var sliderControl = null
 var person_position;
+var radius;
 
 
 var Events = [];
@@ -103,7 +104,7 @@ var blackIcon = new L.Icon({
 
 
 var personIcon = new L.Icon({
-    iconUrl: 'img/person.png',
+    iconUrl: 'img/person2.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -159,12 +160,29 @@ $.getJSON(link_to_data)
         //
         manageLayers(dictionary);
         //
+        //background_images(dictionary);
         //plot_valid_date(dictionary,null,null);
+       
 
         //choose an event from the list
         $(".eventItem").click(function(event) {
             console.log("events", Events);
             var newID = event.target.id;
+            for (var key in dictionary) {
+                var dictValues = dictionary[key];
+                
+                if (this.id == dictValues.name){
+                    var output8= '<div  class="sidebar-header header-cover box" style="padding-left:1%;color:white;background-image:linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('+dictValues.image+');height:30vh;"><div class="resize" ><p style="font-size:19px;font-weight:950;font-family: "Arial Black", Times, serif;"><strong style="font-size:25px;">'+adjust_string(dictValues.name,65)+'</strong><br>'+adjust_string(dictValues.information,65)+'</p></div></div>'
+                    $(".box").replaceWith(output8);
+                    // document.getElementById("logo").innerHTML = output8;
+                  }
+                }
+                 $('.box').each(function(){
+                var inner = $(this).find('p');
+                $(this).height(inner.outerHeight(true));
+                $(this).width(inner.outerWidth(true)); 
+            });
+
             for (var i = 0; i < Events.length; i++) {
 
                 if (this.id == Events[i]) {
@@ -180,6 +198,16 @@ $.getJSON(link_to_data)
             var newID = event.target.id;
             clear_layers();
             ////console.log("switch")
+            plot_loop(dictionary);
+            manageLayers(dictionary);
+            clearManualLayer();
+        });
+
+
+        $(".spinnerCLick").click(function(event) {
+            ////console.log("clicked2nd?");
+            clear_layers();
+            console.log("switch")
             plot_loop(dictionary);
             manageLayers(dictionary);
             clearManualLayer();
@@ -203,6 +231,9 @@ $.getJSON(link_to_data)
             manageLayers(dictionary);
             clearManualLayer();
         });
+
+
+        
 
         
         //list search function
@@ -261,6 +292,7 @@ $.getJSON(link_to_data)
             
 
             if ($("#checkboxCustom").is(':checked')) {
+                $("#spinnerContainer").show();
                 var newID = event.target.id;
                 map.setView([25.296637, 51.517686], 12, {
                     animation: true,
@@ -278,7 +310,8 @@ $.getJSON(link_to_data)
 //}
 
             } else {
-                personLayer.clearLayers();
+                personLayer.clearLayers();                
+                $("#spinnerContainer").hide();
                // plot_loop(dictionary);
                 // for (var key in dictionary) {
                 //     var dictValues = dictionary[key];
@@ -291,6 +324,9 @@ $.getJSON(link_to_data)
         });
 
         $("#defaultView").click(function(event) {
+            var output9= '<div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo1.png);height:15vh;"><div class="resize" ></div></div>';
+            $(".box").replaceWith(output9);
+            
             ////console.log("clicked3rd?");
             var newID = event.target.id;
             map.setView([25.296637, 51.517686], 12, {
@@ -322,6 +358,68 @@ $.getJSON(link_to_data)
     });
 
 
+// function background_images(dictionary)
+// {
+//    var output6='';//'<div class="sidebar-header header-cover" style="position: relative;height:50%;width:10%;margin:-3px -3px; display: inline-block; background-image: url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);"></div>';
+//    for (var key in dictionary) {
+
+//         var dictValues = dictionary[key];    
+//         console.log(dictValues.image);        
+//         var numberOfEvents = Events.length;
+//         var width = $('#backgroundImages').width();
+//         var height = $('#backgroundImages').height();
+//         var sumRatio = width+height;
+//         var widthRatio = (numberOfEvents*width)/sumRatio;
+//         var heightRatio = (numberOfEvents*height)/sumRatio;
+//         var widthAv = width/widthRatio;
+//         var widthAv2 = (widthAv/width)*100;
+//         var heightAv = height/heightAv;
+//         //in %
+//         var heightAv2 = (heightAv2/height)*100; 
+//         var minWidth = widthAv2/6;
+//         var maxWidth = widthAv2*(110/100);
+//         var minHeight = heightAv2/20;
+//         var maxHeight = heightAv2*(110/100);
+//         var imageWidth = Math.floor(Math.random()*(maxWidth-minWidth+1)+minWidth);
+//         var imageHeight = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+
+//         output6+= '<div class="sidebar-header header-cover" style="position: relative;height:'+heightAv2+'%;width:'+widthAv2+'%;margin:-3px -3px; display: inline-block; background-image: url('+dictValues.image+');"> </div>'           
+
+//   }
+//   document.getElementById("backgroundImages").innerHTML = output6;
+
+// }
+var myint = "Suspendisse mauris. Fusce accumsan mollis eros. Pelloooooooooooooooooooooo entesque a diam sit amet mi ullamcorper vehicula. Integer adipiscin sem. Nullam quis massa sit amet nibh viverra malesuada. Nunc sem lacus, accumsan quis, faucibus non, congue vel, arcu, erisque hendrerit tellus. Integer sagittis. Vivamus a mauris eget arcu gravida tristique. Nunc iaculis mi in ante''''''''''''''''''''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'llkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
+console.log(adjust_string(myint,58));
+
+function adjust_string(string,char_limit){
+    var output7= '';
+    var string2 = string.split(" ");
+    var lengthCount = 0;
+    //to keep track of empty spaces
+    var wordCount = 0;
+    for( var i in string2){
+        if((lengthCount+string2[i].length)>(char_limit-wordCount))
+        {            
+            output7+='<br>'+' '+string2[i];
+            lengthCount = string2[i].length;
+            wordCount=0;
+        }
+        else{
+            output7+=" "+string2[i];
+            lengthCount+=string2[i].length;
+            wordCount++;
+          }
+    }
+    return output7;
+    
+}
+
+
+
+console.log("width",$('#backgroundImages').width());
+console.log("height",$('#backgroundImages').height());
+
 function plot_loop(dictionary)
         {
              for (var key in dictionary) {
@@ -339,7 +437,7 @@ function get_distance(marker, coordinate) {
 
 }
 //
-function processData(dictionary, ) {
+function processData(dictionary) {
     var carouselOutput2 = '';
     var carouselCount = 0;
     var carouselCounterOutput2 = ''
@@ -692,7 +790,7 @@ function plot_marker(eventDict) {
     }
     if ($("#checkboxCustom").is(':checked'))  {
         mapLayer.removeLayer(marker);
-        if (get_distance(marker, person_position) < 10000) {
+        if (get_distance(marker, person_position) < (document.getElementById("radiusSpinner").value)*1000) {
             marker.addTo(mapLayer);
             mapArr.push(marker);
         }

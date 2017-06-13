@@ -129,17 +129,31 @@ $(document).ready(function() {
 	}
 
 })(jQuery.fn.removeClass);
+
+(function ($) {
+  $('.spinner .btn:first-of-type').on('click', function() {
+    $('.spinner input').val( parseInt($('.spinner input').val(), ) + 1);
+  });
+  $('.spinner .btn:last-of-type').on('click', function() {
+    $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
+  });
+})(jQuery);
+
+
+
+// $('#radiusSpinner').spinner('option', 'min', 0);
+// $('#radiusSpinner').spinner('option', 'max', 5);
+//$("#radiusSpinner").spinner({min: 0, max: 10});
+
+
  
 $("#EventsFilter").hide();
 $("#datetimepickers").hide();
 $('input[name=checkboxCustom]').attr('checked', false);
 $('input[name=checkboxDateFilter]').attr('checked', false);
 $('input[name=checkboxCategories]').attr('checked', false);
-
- $("#checkboxDateFilter").click(function(event) {
-            if($("#checkboxDateFilter").is(':checked')) {$("#datetimepickers").show();}
-            else{$("#datetimepickers").hide();}
-        });
+ $("#spinnerContainer").hide();
+ 
 
 $("#checkboxCategories").click(function(event) {
             $('input[name=checkbox-blue]').attr('checked', true);

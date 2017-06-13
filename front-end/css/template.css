@@ -1034,10 +1034,49 @@ margin: 5px 0;
 }*/
 
 
+
+/*INCREMENTER*/
+.spinner {
+  width: 100px;
+}
+.spinner input {
+  text-align: right;
+}
+.input-group-btn-vertical {
+  position: relative;
+  white-space: nowrap;
+  width: 1%;
+  vertical-align: middle;
+  display: table-cell;
+}
+.input-group-btn-vertical > .btn {
+  display: block;
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  padding: 8px;
+  margin-left: -1px;
+  position: relative;
+  border-radius: 0;
+}
+.input-group-btn-vertical > .btn:first-child {
+  border-top-right-radius: 4px;
+}
+.input-group-btn-vertical > .btn:last-child {
+  margin-top: -2px;
+  border-bottom-right-radius: 4px;
+}
+.input-group-btn-vertical i{
+  position: absolute;
+  top: 0;
+  left: 4px;
+}
+
+
 /*CUSTOM EDIT*/
 .sidebar.open {
-  min-width: 280px;
-  width: 40vh;
+  min-width: 340px;
+  width: 54vh;
 }
 .sidebar .sidebar-nav li a {
   height: 7vh;  
@@ -1090,3 +1129,18 @@ margin: 5px 0;
   margin:2vh .5vh;*/
   padding: 1vh .5vh;
 }
+
+#mainImage{
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  
+}
+
+#resize{
+  position: absolute;
+  z-index: 10;
+  color: black;
+  padding-left: 5%;
+}
+
