@@ -9,7 +9,7 @@
     <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <!--   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-    <link rel="stylesheet" href="css/template.css">
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
 
@@ -28,10 +28,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-
+    <link rel="stylesheet" href="css/template.css">
 
 </head>
 
@@ -100,34 +101,59 @@
                 <ul class="dropdown-menu" style="margin-bottom: 2vh;">
                     <li>
                         <div class="checkbox">
-                            <input id="checkbox1" type="checkbox">
-                            <label for="checkbox1">
-                                Add Custom Marker
+                            <input id="checkboxCustom" name="checkboxCustom" type="checkbox">
+                            <label for="checkboxCustom">
+                                Add Custum Marker
                             </label>
                         </div>
                     </li>
                     <li>
 
                         <div class="checkbox">
-                            <input id="checkbox1.1" type="checkbox">
-                            <label for="checkbox1.1">
+                            <input id="checkboxDateFilter" name="checkboxDateFilter" type="checkbox">
+                            <label for="checkboxDateFilter">
                                 Filter by Date
                             </label>
                         </div>
                     </li>
 
-
+                   <div id="datetimepickers">
                     <li>
                     <h5>  from</h5>
-                        <div class="container">
+                        <div class="container" >
                             <div class="row">
                                 <div class='col-sm-4'>
                                     <input type='text' class="form-control" id='datetimepicker4' style="width: 36vh;" />
                                 </div>
                                 <script type="text/javascript">
                                     $(function() {
-                                        $('#datetimepicker4').datetimepicker();
+                                        $('#datetimepicker4').datetimepicker();                                
                                     });
+                              
+
+                             
+
+
+                                    // $("#datetimepicker4").datepicker({
+                                    //       onSelect: function() {
+                                    //         $(this).change();
+                                    //         alert("date chosen");
+                                    //       }
+                                    //     });
+
+                              // $("#datetimepicker4").datepicker({
+                              //         onSelect: function(dateText) {
+                              //           alert("date chosen");
+                              //         }
+                              //       });
+
+                                // $('#datetimepicker4').datetimepicker({
+                                //      onClose: function (dateText, inst) {
+                                //         alert("date chosen");
+                                          
+                                //     }
+                                //  });
+                                                            
                                 </script>
                             </div>
                         </div>
@@ -147,45 +173,32 @@
                             </div>
                         </div>
                     </li>
-
-
+                  </div>
+                  
             </li>
             </div>
 
             <li>
 
                 <div class="checkbox">
-                    <input id="checkbox1.2" type="checkbox" >
-                    <label for="checkbox1.2">
+                    <input id="checkboxCategories" name="checkboxCategories" type="checkbox" >
+                    <label for="checkboxCategories">
                         Filter By Category
                     </label>
                 </div>
             </li>
-           
-             <li>
-                <div class="checkbox checkbox-primary " >
-                <div class="checkbox-green">
-                    <input id="checkbox-green" type="checkbox" checked="" >
-                    <label for="checkbox-green" >
-                        Primary
-                    </label>
-                </div>
-              </div>
-            </li>
-            <li>
-                <div class="checkbox checkbox-primary " >
-                <div class="checkbox-blue">
-                    <input id="checkbox-blue" type="checkbox" checked="" >
-                    <label for="checkbox-blue" >
-                        Primary
-                    </label>
-                </div>
-              </div>
-            </li>
+           <div id="EventsFilter" style="padding-left: 2vh;">
+             <li><div class="checkbox checkbox-primary " ><div class="checkbox-green"><input id="checkbox-green" type="checkbox" checked="" > <label for="checkbox-green" >Primary</label></div></div></li>
+
+            <li><div class="checkbox checkbox-primary " ><div class="checkbox-blue"><input id="checkbox-blue" type="checkbox" checked="" >
+            <label for="checkbox-blue" >Primary</label></div></div></li>
+
+
+
             <li>
                 <div class="checkbox checkbox-primary " >
                 <div class="checkbox-orange">
-                    <input id="checkbox-orange" type="checkbox" checked="" >
+                    <input id="checkbox-orange"  type="checkbox" checked="" >
                     <label for="checkbox-orange" >
                         Primary
                     </label>
@@ -242,12 +255,14 @@
                 </div>
               </div>
             </li>
+            </div>
             </ul>
             </li>
            <li>
-               <input type="text" id="search_input" style="width:35vh;margin: 2vh 1vh;" onkeyup="search_function()" class="form-control" placeholder="Search Events">
+               <!-- <input type="text" id="search_input" style="width:35vh;margin: 2vh 1vh;" onkeyup="search_function()" class="form-control" placeholder="Search Events"> -->
+               <input type="text" class="live-search-box" placeholder="Search Events" />
            </li>
-            <ul id="list_of_events">
+            <ul id="list_of_events" class="live-search-list" style="margin-left: -4vh;">
            <!--  <li>
                 <a href="#">
                 Trash
@@ -307,13 +322,17 @@
         $('.dropdown-menu').click(function(e) {
             e.stopPropagation();
         });
+
     </script>
     <script type="text/javascript" src="js/template.js"></script>
     <script type="text/javascript" src="js/moment.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    
 
 
-
+<!-- <script type="text/javascript">
+   
+</script> -->
+<script type="text/javascript" src="js/index2.js"></script>
 </body>
 
 </html>

@@ -129,9 +129,30 @@ $(document).ready(function() {
 	}
 
 })(jQuery.fn.removeClass);
-  $(function() {
-            $('#datetimepicker1').datetimepicker();
+ 
+$("#EventsFilter").hide();
+$("#datetimepickers").hide();
+$('input[name=checkboxCustom]').attr('checked', false);
+$('input[name=checkboxDateFilter]').attr('checked', false);
+$('input[name=checkboxCategories]').attr('checked', false);
+
+ $("#checkboxDateFilter").click(function(event) {
+            if($("#checkboxDateFilter").is(':checked')) {$("#datetimepickers").show();}
+            else{$("#datetimepickers").hide();}
         });
-        $(function() {
-            $('#datetimepicker2').datetimepicker();
-        });
+
+$("#checkboxCategories").click(function(event) {
+            $('input[name=checkbox-blue]').attr('checked', true);
+        //     for (var i = 0; i < color_array.length; i++) {
+
+        //            $('input[name=checkbox-blue]').attr('checked', true);
+                    $('#checkbox-blue').checked = true;});
+   // $("p").hide();
+
+ // var checkboxes = document.getElementsById('checkboxCustom');
+ //  checkboxes.checked = false;
+// for (var i=0; i<checkboxes.length; i++)  {
+//   if (checkboxes[i].type == 'checkbox')   {
+//     checkboxes[i].checked = false;
+//   }
+// }
