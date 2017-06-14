@@ -172,7 +172,7 @@ $.getJSON(link_to_data)
                 var dictValues = dictionary[key];
                 
                 if (this.id == dictValues.name){
-                    var output8= '<div  class="sidebar-header header-cover box" style="padding-left:1%;color:white;background-image:linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('+dictValues.image+');height:30vh;"><div class="resize" ><p style="font-size:19px;font-weight:950;font-family: "Arial Black", Times, serif;"><strong style="font-size:25px;">'+adjust_string(dictValues.name,65)+'</strong><br>'+adjust_string(dictValues.information,65)+'</p></div></div>'
+                    var output8= '<div  class="sidebar-header header-cover box" style="padding-left:1%;color:white;background-image:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('+dictValues.image+');height:30vh;"><div class="resize" ><p style="font-size:19px;font-weight:950;font-family: "Arial Black", Times, serif;"><strong style="font-size:25px;">'+adjust_string(dictValues.name,65)+'</strong><br>'+adjust_string(dictValues.information,65)+'</p></div></div>'
                     $(".box").replaceWith(output8);
                     // document.getElementById("logo").innerHTML = output8;
                   }
@@ -216,7 +216,7 @@ $.getJSON(link_to_data)
         $('#datetimepicker4').on('dp.change', function (e) {
             
             // plot_valid_date(dictionary, document.getElementById("datetimepicker4").value, document.getElementById("datetimepicker5").value);
-                   clear_layers();
+            clear_layers();
             ////console.log("switch")
             plot_loop(dictionary);
             manageLayers(dictionary);
@@ -342,6 +342,7 @@ $.getJSON(link_to_data)
         $("#checkboxDateFilter").click(function(event) {
             if($("#checkboxDateFilter").is(':checked')) {$("#datetimepickers").show();}
             else{$("#datetimepickers").hide();}
+            clear_layers();
             plot_loop(dictionary);
             manageLayers(dictionary);
         });
@@ -525,7 +526,7 @@ function to_12H(time24) {
     } else {
         time12 = time12 + " AM";
     }
-    return time12
+    return time12;
 
 }
 
@@ -535,7 +536,7 @@ function compare_time(t1, t2) {
     t2 = t2.replace(" ", ":");
     var offTime = t1.split(':');
     var offTime2 = t2.split(':');
-    //onsole.log("offTime",offTime);  
+    console.log("offTime",offTime,offTime2);  
     //compare AM/PM
     if (offTime[2] == "AM" && offTime2[2] == "PM") {
         return 2;
@@ -566,8 +567,9 @@ function compare_time(t1, t2) {
 function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-06-07 00:00:00 2017-05-21 00:00:00",06/14/2017 12:00 AM,06/28/2017 12:00 AM
 {
 
-    if(userStartTiming!=null && userEndTiming==null){userStartTiming="02/26/4498 12:10 AM";}
-        if(userStartTiming==null && userEndTiming!=null){userStartTiming="03/01/0000 12:10 AM"}
+    console.log('userStartTiming',userStartTiming,'userEndTiming',userEndTiming);
+    if(userStartTiming!='' && userEndTiming==''){userEndTiming="02/26/4498 12:10 AM";}
+        if(userStartTiming=='' && userEndTiming!=''){userStartTiming="03/01/0000 12:10 AM"}
     // var eventTiming="  2017-06-07 10:00:00 2017-05-21 17:00:00";
 
     var today = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
@@ -591,18 +593,18 @@ function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-
     //console.log("eventStartTime",eventStartTime);
     //console.log("today",moment(eventEndDate,'YYYY-MM-DD').isBefore(eventStartDate,'YYYY-MM-DD'));
     //console.log("currentTime",compare_time(eventStartTime,eventEndTime));
-    if (moment(eventEndDate, 'YYYY-MM-DD').isBefore(eventStartDate, 'YYYY-MM-DD')) {
+    if (moment(eventEndDate, 'YYYY-MM-DD')<moment(eventStartDate, 'YYYY-MM-DD')) {
         return false;
     }
-    if (moment(eventEndDate, 'YYYY-MM-DD').isSame(eventStartDate, 'YYYY-MM-DD') &&
+    if (moment(eventEndDate, 'YYYY-MM-DD')>=moment(eventStartDate,'YYYY-MM-DD') && moment(eventEndDate, 'YYYY-MM-DD')<=moment(eventStartDate,'YYYY-MM-DD') &&
         (compare_time(eventStartTime, eventEndTime) == 1)) {
         return false;
     }
     if ((userStartTiming == null||userStartTiming == "" )&& (userEndTiming == null || userEndTiming == "")) {
-        if (moment(today, 'YYYY/MM/DD').isAfter(eventEndDate, 'YYYY-MM-DD')) {
-            return false
+        if (moment(today, 'YYYY/MM/DD')>moment(eventEndDate, 'YYYY-MM-DD')) {
+            return false;
         }
-        if (moment(today, 'YYYY/MM/DD').isSame(eventEndDate, 'YYYY-MM-DD') && compare_time(eventEndTime, currentTime) == 1) {
+        if (moment(today,'YYYY/MM/DD')>=moment(eventEndDate, 'YYYY-MM-DD') && moment(today,'YYYY/MM/DD')<=moment(eventEndDate, 'YYYY-MM-DD') && compare_time(eventEndTime, currentTime) == 1) {
             return false;
         }
         return true;
@@ -623,13 +625,16 @@ function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-
     var userEndTime = userEndTimingSplit[1] + " " + userEndTimingSplit[2];
 
 
-    // console.log("eventStartTime",eventStartTime);
-    // console.log("eventEndTime",eventEndTime);
-    // console.log("eventEndDate",eventEndDate);
-    // console.log("eventStartDate",eventStartDate);
-    // console.log("eventStartTime",eventStartTime);
-    // console.log("eventEndTime",eventEndTime);
-    // console.log("userStartTime",userStartTime);
+    console.log("eventStartTime",eventStartTime);
+    console.log("eventEndTime",eventEndTime);
+    console.log("eventEndDate",eventEndDate);
+    console.log("eventStartDate",eventStartDate);
+    console.log("eventStartTime",eventStartTime);
+    console.log("eventEndTime",eventEndTime);
+    console.log("userStartDate",userStartDate);
+    console.log("userEndDate",userEndDate);
+
+
     // console.log("today",currentTime,today);
     // console.log("eventEndDate > eventStartDate",moment(eventEndDate,'YYYY-MM-DD')>moment(eventStartDate,'YYYY-MM-DD'));    
 
@@ -646,7 +651,7 @@ function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-
     //     compare_time(userStartTime, userEndTime) == 1) {
     //     alert("Not a valid time span");
     // }
-    if (moment(userEndDate, 'MM/DD/YYYY')==moment(userStartDate, 'MM/DD/YYYY') &&
+    if (moment(userEndDate, 'MM/DD/YYYY')>=moment(userStartDate, 'MM/DD/YYYY') && moment(userEndDate, 'MM/DD/YYYY')<=moment(userStartDate, 'MM/DD/YYYY') &&
         compare_time(userStartTime, userEndTime) == 1) {
         alert("Not a valid time span");
     }
@@ -656,29 +661,28 @@ function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-
     //     return false;
     // }
 
-    if (moment(userEndDate, 'MM/DD/YYYY')==moment(userStartDate, 'MM/DD/YYYY') &&
+    if (moment(userEndDate, 'MM/DD/YYYY')>=moment(userStartDate, 'MM/DD/YYYY') && moment(userEndDate, 'MM/DD/YYYY')<=moment(userStartDate, 'MM/DD/YYYY') &&
         compare_time(userStartTime, userEndTime) == 1) {
         alert("Not a valid time span");
     }
-    console.log("3");
+    
     // if (moment(userEndDate, 'MM/DD/YYYY').isSame(eventEndDate, 'YYYY-MM-DD') && (compare_time(userEndTime, eventStartTime) == 2)) {
     //     return false;
     // }
 
-    if (moment(userEndDate, 'MM/DD/YYYY')==moment(eventEndDate, 'YYYY-MM-DD') && (compare_time(userEndTime, eventStartTime) == 2)) {
-        return false;
-    }
-    console.log(moment(eventStartDate, 'YYYY-MM-DD')<moment(userStartDate, 'MM/DD/YYYY'));
-     // &&
-     //        moment(eventStartDate, 'YYYY-MM-DD')<(userEndDate, 'MM/DD/YYYY') &&
-     //        moment(userEndDate, 'MM/DD/YYYY')<(eventEndDate, 'YYYY-MM-DD') &&
-     //        moment(eventStartDate, 'YYYY-MM-DD')<(userStartDate, 'MM/DD/YYYY'));
+    // if (moment(userEndDate, 'MM/DD/YYYY')==moment(eventEndDate, 'YYYY-MM-DD') && (compare_time(userEndTime, eventStartTime) == 2)) {
+    //     return false;
+    // }
 
-    // return moment(userStartDate, 'MM/DD/YYYY').isBefore(eventEndDate, 'YYYY-MM-DD') &&
-    //         moment(eventStartDate, 'YYYY-MM-DD').isBefore(userEndDate, 'MM/DD/YYYY') &&
-    //         moment(userEndDate, 'MM/DD/YYYY').isBefore(eventEndDate, 'YYYY-MM-DD') &&
-    //         moment(eventStartDate, 'YYYY-MM-DD').isBefore(userStartDate, 'MM/DD/YYYY');
+    if(moment(userStartDate, 'MM/DD/YYYY')>= moment(eventStartDate, 'YYYY-MM-DD') && moment(userStartDate, 'MM/DD/YYYY')<= moment(eventStartDate, 'YYYY-MM-DD')
+     && (compare_time(userStartTime, eventStartTime) == 1) ){return false;}
+   console.log("3",moment(userEndDate, 'MM/DD/YYYY')==moment(userStartDate, 'MM/DD/YYYY'));
+    if(moment(userEndDate, 'MM/DD/YYYY') >= moment(eventEndDate, 'YYYY-MM-DD') && moment(userEndDate, 'MM/DD/YYYY') <= moment(eventEndDate, 'YYYY-MM-DD') 
+        && (compare_time(userEndTime, eventEndTime) == 2) ){return false;}
+  // console.log(moment(userEndDate, 'MM/DD/YYYY')<= moment(eventEndDate, 'YYYY-MM-DD'));
 
+    console.log('userEndDate',userEndDate)
+    console.log( moment(eventStartDate, 'YYYY-MM-DD')<=moment(userEndDate, 'MM/DD/YYYY') )
     return moment(userStartDate, 'MM/DD/YYYY')<=moment(eventEndDate, 'YYYY-MM-DD') &&
             moment(eventStartDate, 'YYYY-MM-DD')<=moment(userEndDate, 'MM/DD/YYYY') &&
             moment(userEndDate, 'MM/DD/YYYY')>=moment(eventEndDate, 'YYYY-MM-DD') &&
@@ -704,16 +708,16 @@ function plot_valid_date(dictionary, userStartTiming, userEndTiming) {
 }
 
 
-////console.log("is valid date",is_valid_date("2017-06-07 00:00:00","2017-05-21 00:00:00","06/14/2017 12:00 AM","06/28/2017 12:00 AM"));
-////console.log("valid time?",is_valid_date("  2017-05-21 24:00:00 2017-05-21 00:00:00","05/21/2017 12:00 AM","05/21/2017 12:00 AM"));
-//console.log("valid time?",is_valid_date("2017-06-04 22:00:00 2017-06-06 00:00:00",null,null));
-// //console.log("valid time2?",moment('01:00 PM','hh:mm A')<moment('01:00 AM','hh:mm A'));
-// //console.log(moment('13:00','HH:mm'));
+//converts date from YYYY-MM-DD to MM/DD/YYYY
+function convert_date_format(date)
+{
+    var string = date.split('-');
+    var date2 = string[1]+'/'+string[2]+'/'+string[0];
+    return date2;
+}
 
 
-//if date not specified, dataFilter=2
-//if not valid date dateFilter=0
-//if valid date dateFilter=1
+
 function plot_marker(eventDict) {
     //create popup message
     // if (!dateFilter) {
@@ -752,7 +756,7 @@ function plot_marker(eventDict) {
         string += '<div class="popup_txt"> <strong>Hosted by:</strong> ' + eventDict.event_venue + '</div>';
     }
     if (eventStartDate != null) {
-        string += '<div class="popup_txt"> <strong>Date:</strong> ' + eventStartDate + " / " + eventEndDate + '</div>';
+        string += '<div class="popup_txt"> <strong>Date:</strong> ' + convert_date_format(eventStartDate) + " - " + convert_date_format(eventEndDate) + '</div>';
     }
     if (eventStartTime != null) {
         string += '<div class="popup_txt"><strong> Starts at:</strong> ' + to_12H(eventStartTime) + '</div>';
