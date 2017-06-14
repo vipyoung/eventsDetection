@@ -690,22 +690,22 @@ function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-
 }
 
 
-// function plot_valid_date(dictionary, userStartTiming, userEndTiming) {
-//     clear_layers();
-//     for (var key in dictionary) {
-//         var dictValues = dictionary[key];
-//         //console.log("plot valid",dictValues.name,is_valid_date(dictValues.date,userStartTiming,userEndTiming));
-//         var dateValidity = is_valid_date(dictValues.date, userStartTiming, userEndTiming);
-//         // if ($("#checkboxCustom").is(':checked')) {
-//         //     if (dateValidity) {
-//                 plot_marker(dictValues, dateValidity, userStartTiming, userEndTiming);
-//         //     }
-//         // }
-//         // else{
-//           //  plot_marker(dictValues, dateValidity, userStartTiming, userEndTiming);
-//        // }
-//     }
-// }
+function plot_valid_date(dictionary, userStartTiming, userEndTiming) {
+    clear_layers();
+    for (var key in dictionary) {
+        var dictValues = dictionary[key];
+        //console.log("plot valid",dictValues.name,is_valid_date(dictValues.date,userStartTiming,userEndTiming));
+        var dateValidity = is_valid_date(dictValues.date, userStartTiming, userEndTiming);
+        // if ($("#checkboxCustom").is(':checked')) {
+        //     if (dateValidity) {
+                plot_marker(dictValues, dateValidity, userStartTiming, userEndTiming);
+        //     }
+        // }
+        // else{
+          //  plot_marker(dictValues, dateValidity, userStartTiming, userEndTiming);
+       // }
+    }
+}
 
 
 //converts date from YYYY-MM-DD to MM/DD/YYYY
