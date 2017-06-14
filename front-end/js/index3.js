@@ -19,8 +19,6 @@ var violetArr = [];
 var greyArr = [];
 var manualArr = [];
 
-
-
 //marker colors
 var blueIcon = new L.Icon({
     iconUrl: 'img/marker-icon-2x-blue.png',
@@ -102,7 +100,6 @@ var blackIcon = new L.Icon({
     colVal: '#3C3C3C'
 });
 
-
 var personIcon = new L.Icon({
     iconUrl: 'img/person2.png',
     iconSize: [25, 41],
@@ -111,7 +108,6 @@ var personIcon = new L.Icon({
     shadowSize: [41, 41],
     colVal: '#3C3C3C'
 });
-//Reference :https://github.com/pointhi/leaflet-color-markers
 
 var iconArr = [blueIcon, redIcon, greenIcon, orangeIcon, violetIcon, greyIcon, yellowIcon, blackIcon]; //
 //corresponding color values
@@ -155,27 +151,19 @@ function onEachFeature(feature, layer) {
     dictionary2[feature.properties.title]['name'] = feature.properties.title;
 }
 
-
 var link = './application/events3.json'
 $.getJSON(link, function(events) {
-
     console.log("DEBUG:", events);
-
-
     L.geoJSON(events, {
-
         style: function(feature) {
             return feature.properties && feature.properties.style;
         },
-
         onEachFeature: onEachFeature,
-
         pointToLayer: function(feature, latlng) {
-
             return L.marker(latlng);
         }
     });
-
+    //
     processData(dictionary2);
     //
     renderSwitches();
@@ -191,7 +179,7 @@ $.getJSON(link, function(events) {
             var dictValues = dictionary2[key];
 
             if (this.id == dictValues.name) {
-                var output8 = '<div  class="sidebar-header header-cover box" style="padding-left:1%;color:white;background-image:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(' + dictValues.image + ');height:30vh;"><div class="resize" ><p style="font-size:19px;font-weight:950;font-family: "Arial Black", Times, serif;"><strong style="font-size:25px;">' + adjust_string(dictValues.name, 65) + '</strong><br>' + adjust_string(dictValues.information, 65) + '</p></div></div>'
+                var output8 = '<div class="sidebar-header header-cover box" style="padding-left:1%;color:white;background-image:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(' + dictValues.image + ');height:30vh;"><div class="resize" ><p style="font-size:19px;font-weight:950;font-family: "Arial Black", Times, serif;"><strong style="font-size:25px;">' + adjust_string(dictValues.name, 65) + '</strong><br>' + adjust_string(dictValues.information, 65) + '</p></div></div>'
                 $(".box").replaceWith(output8);
             }
         }
@@ -202,30 +190,23 @@ $.getJSON(link, function(events) {
         });
 
         for (var i = 0; i < Events.length; i++) {
-
             if (this.id == Events[i]) {
                 zoom_to_pin(dictionary2, category_array, Events[i]);
             }
         }
-
     });
 
     //check/uncheck a category
     $(".filter").click(function(event) {
-        ////console.log("clicked2nd?");
         var newID = event.target.id;
         clear_layers();
-        ////console.log("switch")
         plot_loop(dictionary2);
         manageLayers(dictionary2);
         clearManualLayer();
     });
 
-
     $(".spinnerCLick").click(function(event) {
-        ////console.log("clicked2nd?");
         clear_layers();
-        console.log("switch")
         plot_loop(dictionary2);
         manageLayers(dictionary2);
         clearManualLayer();
@@ -239,7 +220,6 @@ $.getJSON(link, function(events) {
     });
 
     $('#datetimepicker5').on('dp.change', function(e) {
-
         clear_layers();
         plot_loop(dictionary2);
         manageLayers(dictionary2);
@@ -248,17 +228,12 @@ $.getJSON(link, function(events) {
 
     //list search function
     jQuery(document).ready(function($) {
-
         $('.live-search-list li').each(function() {
             $(this).attr('data-search-term', $(this).text().toLowerCase());
         });
-
         $('.live-search-box').on('keyup', function() {
-
             var searchTerm = $(this).val().toLowerCase();
-
             $('.live-search-list li').each(function() {
-
                 if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
                     $(this).show();
                 } else {
@@ -283,27 +258,19 @@ $.getJSON(link, function(events) {
     });
 
     $("#checkboxCustom").click(function(event) {
-
-
-
         if ($("#checkboxCustom").is(':checked')) {
             $("#spinnerContainer").show();
             var newID = event.target.id;
             map.setView([25.296637, 51.517686], 12, {
                 animation: true,
                 center: [25.296637, 51.517686]
-
             });
             clear_layers();
             addCustomMarker(dictionary2);
-
             person_position = [25.296637, 51.517686];
-
-
         } else {
             personLayer.clearLayers();
             $("#spinnerContainer").hide();
-
         }
         plot_loop(dictionary2);
         manageLayers(dictionary2);
@@ -312,18 +279,14 @@ $.getJSON(link, function(events) {
     $("#defaultView").click(function(event) {
         var output9 = '<div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo1.png);height:15vh;"><div class="resize" ></div></div>';
         $(".box").replaceWith(output9);
-
-        ////console.log("clicked3rd?");
         var newID = event.target.id;
         map.setView([25.296637, 51.517686], 12, {
             animation: true,
             center: [25.296637, 51.517686]
-
         });
         // renderSwitches();
         manageLayers(dictionary2)
     });
-
 
     $("#checkboxDateFilter").click(function(event) {
         if ($("#checkboxDateFilter").is(':checked')) {
@@ -335,15 +298,8 @@ $.getJSON(link, function(events) {
         plot_loop(dictionary2);
         manageLayers(dictionary2);
     });
-
-
     plot_loop(dictionary2);
-
-
 });
-
-// var myint = "Suspendisse mauris. Fusce accumsan mollis eros. Pelloooooooooooooooooooooo entesque a diam sit amet mi ullamcorper vehicula. Integer adipiscin sem. Nullam quis massa sit amet nibh viverra malesuada. Nunc sem lacus, accumsan quis, faucibus non, congue vel, arcu, erisque hendrerit tellus. Integer sagittis. Vivamus a mauris eget arcu gravida tristique. Nunc iaculis mi in ante''''''''''''''''''''''''''''''''''''''''''''''''''''''''';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'llkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
-// console.log(adjust_string(myint, 58));
 
 function adjust_string(string, char_limit) {
     var output7 = '';
@@ -363,10 +319,7 @@ function adjust_string(string, char_limit) {
         }
     }
     return output7;
-
 }
-
-
 
 console.log("width", $('#backgroundImages').width());
 console.log("height", $('#backgroundImages').height());
@@ -377,9 +330,7 @@ function plot_loop(dictionary) {
 
         plot_marker(dictValues);
     }
-
 }
-
 
 //calculates didstance between person icon and the given marker
 function get_distance(marker, coordinate) {
@@ -401,7 +352,6 @@ function processData(dictionary) {
         }
     }
 }
-//
 
 function clear_layers() {
     manualLayer.clearLayers();
@@ -410,18 +360,14 @@ function clear_layers() {
     }
 }
 
-
 function add_layers() {
-
     for (var i = 0; i < color_array.length; i++) {
         // //console.log("color",color)
         map.addLayer(eval(color_array[i] + "Layer"));
     }
-
 }
 
 function addCustomMarker(dictionary) {
-
     var personMarker = L.marker([25.296637, 51.517686], {
         icon: personIcon,
         draggable: 'true'
@@ -432,12 +378,10 @@ function addCustomMarker(dictionary) {
         person_position = marker.getLatLng();
         plot_loop(dictionary);
     });
-
 }
 
 //Convert time from 24H to 12H form (00:00:00) to (00:00 AM/PM)
 function to_12H(time24) {
-
     var offTime = time24.split(':');
     var hour = offTime[0];
     offTime = offTime.slice(0, 2);
@@ -450,7 +394,6 @@ function to_12H(time24) {
         time12 = time12 + " AM";
     }
     return time12;
-
 }
 
 //returns 1 if t1>t22 , 0 if t1==t2, 2 if t2>t1
@@ -467,7 +410,6 @@ function compare_time(t1, t2) {
     if (offTime2[2] == "AM" && offTime[2] == "PM") {
         return 1;
     }
-
     //compare hours
     if (offTime[0] > offTime2[0]) {
         return 1;
@@ -484,10 +426,10 @@ function compare_time(t1, t2) {
     }
     return 0;
 }
+
 //when 2nd & 3rd parameters are null checks with today's date
 function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-06-07 00:00:00 2017-05-21 00:00:00",06/14/2017 12:00 AM,06/28/2017 12:00 AM
 {
-
     console.log('userStartTiming', userStartTiming, 'userEndTiming', userEndTiming);
     if (userStartTiming != '' && userEndTiming == '') {
         userEndTiming = "02/26/4498 12:10 AM";
@@ -551,8 +493,6 @@ function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-
     if ((moment(userEndDate, 'MM/DD/YYYY') < moment(userStartDate, 'MM/DD/YYYY'))) {
         alert("Not a valid time span");
     }
-
-
     if (moment(userEndDate, 'MM/DD/YYYY') >= moment(userStartDate, 'MM/DD/YYYY') && moment(userEndDate, 'MM/DD/YYYY') <= moment(userStartDate, 'MM/DD/YYYY') &&
         compare_time(userStartTime, userEndTime) == 1) {
         alert("Not a valid time span");
@@ -588,7 +528,6 @@ function convert_date_format(date) {
 }
 
 function plot_marker(eventDict) {
-
     var string = '';
     var eventDate = $.trim(eventDict.date);
     eventDate = eventDate.split(" ");
@@ -602,8 +541,6 @@ function plot_marker(eventDict) {
     if (eventEndTime == "00:00:00") {
         eventEndTime = null;
     }
-
-
     if (eventDict.image != null) {
         string += '<div><img src="' + eventDict.image + '" style="width:100%;"></br></div><br>';
     }
@@ -732,10 +669,7 @@ function manageLayers(dictionary) {
         } else if (category_color == "black") {
             li[i].style.display = "";
         }
-
     }
-
-
 }
 
 function show_whole_list() {
@@ -746,24 +680,19 @@ function show_whole_list() {
     }
 }
 
-
 function clearManualLayer() {
     for (var i = 0; i < manualArr.length; i++) {
         manualLayer.removeLayer(manualArr[i]);
     }
-
 }
 
 //adds checkbox
 function renderSwitches() {
     var output4;
     output4 = '';
-
     for (var i = 0; i < category_array.length; i++) {
-
         output4 += '<li><div class="checkbox checkbox-primary filter" ><div class="checkbox-' + color_array[i] + '"><input id="checkbox-' + color_array[i] + '" name=""checkbox-' + color_array[i] + '" type="checkbox" checked="" ><label for="checkbox-' + color_array[i] + '" >' + category_array[i] + '</label></div></div></li>';
         document.getElementById("EventsFilter").innerHTML = output4;
-
     }
 }
 //
@@ -785,7 +714,6 @@ function zoom_to_pin(dictionary, category_array, Event) {
     if (eventEndTime == "00:00:00") {
         eventEndTime = null;
     }
-
 
     if (dictValues.image != null) {
         string += '<div><img src="' + dictValues.image + '" style="width:100%;"></br></div><br>';
@@ -828,9 +756,7 @@ function zoom_to_pin(dictionary, category_array, Event) {
     }).bindPopup(string)
     marker.addTo(manualLayer).openPopup();
     manualArr.push(marker);
-
 }
-
 
 function listOfEvents() {
     var eventsListOutput;
