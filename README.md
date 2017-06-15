@@ -20,9 +20,6 @@ FrontEnd:
 - HTML/Javascript/CSS3
 - Leaflet.js
 
-## Demo
-
-[Screenshot]
 
 ## Contact
 Developed by:
