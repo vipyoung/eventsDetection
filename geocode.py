@@ -3,6 +3,7 @@ import urllib2
 import json
 import googlemaps
 from googlemaps.exceptions import ApiError, TransportError, Timeout, HTTPError
+import json, ast
 
 
 class Geocode:
@@ -23,7 +24,7 @@ class Geocode:
             # Use components to make sure the first result is about Qatar.
             res = gmaps.geocode(location, components={'country': self.country_code})
             if not res or len(res) == 0:
-                return None
+                return [0,0]
             # Thanks to components, we can consider the first result only.
             #g_location = self._format_google_location(res[0])
             #return g_location
@@ -32,18 +33,20 @@ class Geocode:
         except ApiError as e:
             print "problem with googlemap geocoding (ApiError):"
             print e
-            return None
+            return [0,0]
         except HTTPError as e:
             print "problem with googlemap geocoding (HTTPError): %s"+ e
-            return None
+            return [0,0]
         except Timeout as e:
             print "problem with googlemap geocoding (Timeout): %s"+ e
-            return None
+            return [0,0]
         except TransportError as e:
             print "problem with googlemap geocoding (TransportError): %s"+ e
-            return None
-        #return [res[0][u'geometry'][u'location'][u'lat'], res[0][u'geometry'][u'location'][u'lng']]
-        return res[0]
+            return [0,0]
+        return [res[0][u'geometry'][u'location'][u'lat'], res[0][u'geometry'][u'location'][u'lng']]
+        #return res[0]
+        #r = ast.literal_eval(json.dumps(r))
+        #return r
 
     def google_geocoding_from_scratch(self, location):
         basepath = 'https://maps.googleapis.com/maps/api/geocode/json?'
@@ -90,8 +93,9 @@ class Geocode:
             print '%s: %s - Needs to generate new tokens', e.code, e.reason
             return None
 
+
 """
-__name__ == "__main__":
+if __name__ == "__main__":
     obj = Geocode()
     print obj.google_geocoding('Al Nafourah Garden')
     #string = obj.google_geocoding_from_scratch('west bay')

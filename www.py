@@ -35,7 +35,7 @@ class EventScarper:
 
     def init_mongo(self):
         # connect mongo client to an instance of mogod
-        client = MongoClient()
+        client = MongoClient("mongodb://ian:secretPassword@123.45.67.89/cool_db")
         # create a db test
         db = client.webevents
         return db
@@ -138,8 +138,10 @@ class EventScarper:
         try:
             for place_geoloc in geocoded_location:
                 if place_geoloc != [0,0]:
+
                     # filter coordinatess if it is inside qatar
                     if self.filter_in_qatar( place_geoloc, qatar_bbx) == False:
+
                         print place_geoloc
                         feature = Feature(geometry=Point((place_geoloc[1], place_geoloc[0])), properties=  {"title": head, "information": info, "date": date, "image": image, "link" :url } )
                         self.event_lst.append(feature)

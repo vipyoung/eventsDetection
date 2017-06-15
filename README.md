@@ -3,24 +3,34 @@
 QEvents is a system built by QCRI's summer interns to automatically detect events and display them as they happen on a map
 
 
-## Input
-List of urls from which events could be extracted 
+## Project Description:
+
+The system scraps and collects data from different websites (e.g: http://eventsDoha.com). The collected data is stored in MongoDb and visualized through a map-centered dashboard.
 
 
-### Example 
+### Technologies:
+Backend:
+- Python
+- B4
 
-## Output
-Provide a screenshot of the system, even a sketch should be ok
+DB:
+- MongoDB
 
+FrontEnd:
+- HTML/Javascript/CSS3
+- Leaflet.js
 
+## Demo
 
-## Citation
-TBD
+[Screenshot]
 
 ## Contact
-Monishaa
-Heba
-Sofiane Abbar (sofiane.abbar@gmail.com)
-Noora Al Emadi
-Tahar Zanouda
+Developed by:
+- Monishaa
+- Heba
+- Julia
 
+Mentors:
+- Sofiane Abbar (sofiane.abbar [at] gmail.com)
+- Noora Al Emadi
+- Tahar

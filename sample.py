@@ -58,12 +58,24 @@ class EventScarper:
             self.db.events.insert_one(title_and_summary)
             list_of_content.append(title_and_summary)
 
+            for item in range(len(category)):
+                cate=[]
+                results = [item['term'] for item in category]
+                print results
+                print'*******'
+
+            for i in range(len(results)):
+                results=results[i].encode("utf-8")
+            cate.append(results[0])
+            print cate
+
+
         for post in feed_content.entries:
             print post.title + ": " + post.link + " "
             urls.add(post.link)
-        return urls
+        return urls,cate
 
-    def extract_event_info(self, url):
+    def extract_event_info(self, url,cate):
         info = ''
         locations = []
         date = ''
@@ -135,13 +147,15 @@ class EventScarper:
         qatar_bbx = [25.1136,25.5362,50.9496,51.2018]
         self.db.eventinfor.insert_one(details)
 
+
+
         try:
             for place_geoloc in geocoded_location:
                 if place_geoloc != [0,0]:
-                    # filter coordinatess if it is inside qatar
+                        # filter coordinatess if it is inside qatar
                     if self.filter_in_qatar( place_geoloc, qatar_bbx) == False:
                         print place_geoloc
-                        feature = Feature(geometry=Point((place_geoloc[1], place_geoloc[0])), properties=  {"title": head, "information": info, "date": date, "image": image, "link" :url } )
+                        feature = Feature(geometry=Point((place_geoloc[0], place_geoloc[1])), properties=  {"title": head, "information": info, "date": date, "image": image, "link" :url,"category": cate } )
                         self.event_lst.append(feature)
                         print '***********'
                     else:
@@ -168,6 +182,8 @@ class EventScarper:
             clean_location[j] = location_set[j].encode("utf-8")
         return clean_location
     """
+
+
     def export_json(self, lst_features):
         geojson_data = FeatureCollection(lst_features)
         with open('events.geojson', 'w') as f:
@@ -177,11 +193,16 @@ if __name__ == "__main__":
     event_scraper = EventScarper()
 
     # collecting the different urls of events
-    events = event_scraper.get_events_urls(event_scraper.events_doha_link)
+    events,categorr = event_scraper.get_events_urls(event_scraper.events_doha_link)
     print events
     features = []
-    for link in list(events):
-        event_scraper.extract_event_info(link)
+    print categorr
+    i = 0
+    while(i<len(categorr)):
+
+        for link in list(events):
+            event_scraper.extract_event_info(link,categorr[i])
+        i=i+1
 
     features = event_scraper.event_lst
 
