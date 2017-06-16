@@ -1,0 +1,40 @@
+body {
+            padding: 0;
+            margin: 0;
+        }
+html, body, #map {
+	        padding: 0 357px;
+            height: 100%;
+            width: 40%;
+            background-image: none;
+            background-color: #2F4F4F;
+        }
+#div2 h2 {
+	        position:absolute;
+            top: 40px;
+            left: 10px;
+            font: times;
+            color: white;
+}
+
+#div2 h4 {
+	        position:absolute;
+            top:70px;
+            left: 10px;
+            font: times;
+            font-weight: normal;
+            color: white;
+}
+
+#div1 {
+	        position:absolute;
+            top:140px;
+            left: 10px;
+            font: times;
+            font-weight: normal;
+            color: white;
+}
+
+
+
+
