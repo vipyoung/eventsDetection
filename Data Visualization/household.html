@@ -41,10 +41,10 @@
     info.onAdd = function (map) {
         this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
         this.update();
-        return this._div;                            // .onAdd returns the DOM element of the control
+        return this._div;                            
     };
 
-    // updates info when municipalities are hovered over
+    
     info.update = function (props) {
         this._div.innerHTML = '<h3>Qatar households</h3>' +'<b>' + '<h3>by municipality</h3>' +  (props ?
              '<b>' + props.NAME_1 +' (' + props.NL_NAME_1 +')' : 'Move your mouse over a municipality');
