@@ -5,11 +5,6 @@
     <title>QEvents</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
-    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-    <!--   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
 
@@ -39,14 +34,14 @@
   
 
     <!-- Overlay for fixed sidebar -->
-    <div class="sidebar-overlay"></div>
+    <div class="sidebar-overlay" style="background-color: maroon;"></div>
 
     <!-- Material sidebar -->
-    <aside id="sidebar" class="sidebar sidebar-default open" role="navigation">
+    <aside id="sidebar" class="sidebar sidebar-default open" role="navigation" style=" background-color: maroon">
         <!-- Sidebar header -->
-         <div id="logo" class="logoBox">
-        <div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo1.png);height:15vh;">
-            <div class="resize" >
+         <div id="logo" class="logoBox" style=" background-color:white">
+        <div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo19.bmp);height:19vh;">
+            <div class="resize"  >
             </div>
         </div>
          
@@ -56,10 +51,10 @@
             </div>
          
         <!-- Sidebar navigation -->
-        <ul class="nav sidebar-nav" >
+        <ul class="nav sidebar-nav" style="background-color: maroon;" >
 
             <li class="dropdown" >
-                <a class="ripple-effect dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-filter "></span>
+                <a class="ripple-effect dropdown-toggle" href="#" data-toggle="dropdown" style="color: white;background-color: maroon;"><span class="glyphicon glyphicon-filter " ></span>
                 Filter Events
                 <b class="caret"></b>
             </a>
@@ -68,17 +63,18 @@
                         <div class="checkbox">
                             <input id="checkboxCustom" name="checkboxCustom" type="checkbox">
                             <label for="checkboxCustom">
-                                Add Custum Marker
+                                Add Custom Marker
                             </label>
                         </div>
                     </li>
 
 
 
-                    <li>
-                        <div id="spinnerContainer">
-                        <label style="margin-left: 8%;font-size: 15px;">Choose radius in Km</label>
-                        <div class="input-group spinner" style="margin-left: 10%;">
+                    <li id="spinnerContainer">
+                    <span style="margin-left: 2vh;margin-right: -1.5vh; vertical-align:1vh;font-size: 18px;font-weight: 500;s"> Events</span>
+                        <div  style="display:inline-block;">
+                        <!-- <label style="margin-left: 8%;font-size: 15px;">Choose radius in Km</label> -->
+                        <div class="input-group spinner" style="margin-left: 10%;height: 2vh">
                         
                         <input type="text" id="radiusSpinner" class="form-control" value="0">
                         <div class="input-group-btn-vertical">
@@ -86,13 +82,9 @@
                           <button class="btn btn-default spinnerCLick" type="button"><i class="fa fa-caret-down"></i></button>
                         </div>
                     </div>
+                    </div>
+                    <span style="vertical-align:1vh;font-size: 17px;font-weight: 500;"> km away</span>
                     </li>
-
-
-
-
-
-
                     <li>
 
                         <div class="checkbox">
@@ -105,7 +97,7 @@
 
                    <div id="datetimepickers">
                     <li>
-                    <h5>  from</h5>
+                    <h5 style="margin-left: 2vh;">  from</h5>
                         <div class="container" >
                             <div class="row">
                                 <div class='col-sm-4'>
@@ -122,7 +114,7 @@
                         </div>
                     </li>
                     <li>
-                    <h5>  to</h5>
+                    <h5 style="margin-left: 2vh;">  to</h5>
                         <div class="container">
                             <div class="row">
                                 <div class='col-sm-4'>
@@ -221,14 +213,18 @@
             </div>
             </ul>
             </li>
-            <li> <button id="defaultView" style="width: 100%">Default View</button></li>
+            
            <li>
                
-               <input type="text" class="live-search-box" placeholder="Search Events" />
+               <input type="text" class="live-search-box d-inline-block" placeholder="Search Events" style="width: 67%;display: inline-block;" />
+                <button id="defaultView" class="btn btn-green d-inline-block" style="width: 27%;display: inline-block;height:4.5vh;">Default View</button>
            </li>
-            <ul id="list_of_events" class="live-search-list" style="margin-left: -4vh;height: 65vh;">
+          <!--  <li> --><!-- </li> -->
+
+            <ul id="list_of_events" class="live-search-list" style="margin-left: -4vh;height: 68vh;background-image:linear-gradient(rgba(128,0,0,1), rgba(128,0,0,0.67)), url(http://www.lauchlan-leishman.com/wp-content/uploads/2013/03/Loops-Background-1024x417.jpg); font-size: 10px;">
           
             </ul>
+            
         </ul>
       
     </aside>
@@ -250,7 +246,7 @@
     </script>
     <script type="text/javascript" src="js/template.js"></script>
     <script type="text/javascript" src="js/moment.js"></script>
-<script type="text/javascript" src="js/index3.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </body>
 
 </html>
