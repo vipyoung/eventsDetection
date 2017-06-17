@@ -81,8 +81,8 @@ function addDataToMap(data, map) {
                 zone.addTo(map);
                 $("#div1").load("result_totalpopulation.json", function(data,status){
                     var a = get_total(data,4);
-                    //var z = get_median_agegroup(a);
-                    var text1 = "Total population: " + a[17] + '<br>';
+                    var z = get_median_agegroup(a);
+                    var text1 = "Total population: " + a[17] + '<br>' + "Median Age Group: " + z + '<br>';
                 $("#div1").load("result_femalepopulation.json", function(data,status){
                     var a = get_total(data,4);
 
@@ -101,8 +101,8 @@ function addDataToMap(data, map) {
                 zone.addTo(map);
                 $("#div1").load("result_totalpopulation.json", function(data,status){
                     var a = get_total(data,1);
-                    //var z = get_median_agegroup(a);
-                    var text1 = "Total population: " + a[17] + '<br>';
+                    var z = get_median_agegroup(a);
+                    var text1 = "Total population: " + a[17] + '<br>' + "Median Age Group: " + z + '<br>';
                 $("#div1").load("result_femalepopulation.json", function(data,status){
                     var a = get_total(data,1);
 
@@ -120,8 +120,8 @@ function addDataToMap(data, map) {
                 zone.addTo(map);
                 $("#div1").load("result_totalpopulation.json", function(data,status){
                     var a = get_total(data,5);
-                    //var z = get_median_agegroup(a);
-                    var text1 = "Total population: " + a[17] + '<br>';
+                    var z = get_median_agegroup(a);
+                    var text1 = "Total population: " + a[17] + '<br>' + "Median Age Group: " + z + '<br>';
                 $("#div1").load("result_femalepopulation.json", function(data,status){
                     var a = get_total(data,5);
 
@@ -139,8 +139,8 @@ function addDataToMap(data, map) {
                 zone.addTo(map);
                 $("#div1").load("result_totalpopulation.json", function(data,status){
                     var a = get_total(data,7);
-                    //var z = get_median_agegroup(a);
-                    var text1 = "Total population: " + a[17] + '<br>';
+                    var z = get_median_agegroup(a);
+                    var text1 = "Total population: " + a[17] + '<br>' + "Median Age Group: " + z + '<br>';
                 $("#div1").load("result_femalepopulation.json", function(data,status){
                     var a = get_total(data,7);
 
@@ -158,8 +158,8 @@ function addDataToMap(data, map) {
                 zone.addTo(map);
                 $("#div1").load("result_totalpopulation.json", function(data,status){
                     var a = get_total(data,2);
-                    //var z = get_median_agegroup(a);
-                    var text1 = "Total population: " + a[17] + '<br>';
+                    var z = get_median_agegroup(a);
+                    var text1 = "Total population: " + a[17] + '<br>' + "Median Age Group: " + z + '<br>';
                 $("#div1").load("result_femalepopulation.json", function(data,status){
                     var a = get_total(data,2);
 
@@ -177,8 +177,8 @@ function addDataToMap(data, map) {
                 zone.addTo(map);
                 $("#div1").load("result_totalpopulation.json", function(data,status){
                     var a = get_total(data,8);
-                    //var z = get_median_agegroup(a);
-                    var text1 = "Total population: " + a[17] + '<br>';
+                    var z = get_median_agegroup(a);
+                    var text1 = "Total population: " + a[17] + '<br>' + "Median Age Group: " + z + '<br>';
                 $("#div1").load("result_femalepopulation.json", function(data,status){
                     var a = get_total(data,8);
 
@@ -201,14 +201,14 @@ function addDataToMap(data, map) {
                     var array_4 = array_3[2].toString().split(":");
                     var array_5 = [];
                     var array_5_names = [];
-                    for(var i=17;i>0;i--)                         //creating arr_rayyan_5 which is an array having only the population data
+                    for(var i=17;i>0;i--)                        
                     {   var array_6 = array_2[i].toString().split(":");
                         array_5[17-i] = array_6[1];
                         array_5_names[17-i] = array_6[0];
                     }
                     array_5[17] = array_4[1];
                     array_5_names[17] = array_4[0];
-                    var array_7 = sorted(array_5);      //creating a sorted array
+                    var array_7 = sorted(array_5);      
 
                     var text1 = "Total population: " + array_7[17] + '<br>' + "Median age group: " + '<br>';
                 $("#div1").load("result_femalepopulation.json", function(data,status){
@@ -218,14 +218,14 @@ function addDataToMap(data, map) {
                     var array_4 = array_3[2].toString().split(":");
                     var array_5 = [];
                     var array_5_names = [];
-                    for(var i=17;i>0;i--)                         //creating arr_rayyan_5 which is an array having only the population data
+                    for(var i=17;i>0;i--)                        
                     {   var array_6 = array_2[i].toString().split(":");
                         array_5[17-i] = array_6[1];
                         array_5_names[17-i] = array_6[0];
                     }
                     array_5[17] = array_4[1];
                     array_5_names[17] = array_4[0];
-                    var array_7 = sorted(array_5);      //creating a sorted array
+                    var array_7 = sorted(array_5);      
 
                     var text2 = "Total female population: " + array_7[17] + '<br>';
                 $("#div1").load("result_malepopulation.json", function(data,status){
@@ -235,7 +235,7 @@ function addDataToMap(data, map) {
                     var array_4 = array_3[2].toString().split(":");
                     var array_5 = [];
                     var array_5_names = [];
-                    for(var i=17;i>0;i--)                         //creating arr_rayyan_5 which is an array having only the population data
+                    for(var i=17;i>0;i--)                        
                     {   var array_6 = array_2[i].toString().split(":");
                         array_5[17-i] = array_6[1];
                         array_5_names[17-i] = array_6[0];
@@ -250,16 +250,15 @@ function addDataToMap(data, map) {
                 });
                }
         });
-          /*function get_median_agegroup(array_sorted)
-                {   var b = array_sorted.toString();
+          function get_median_agegroup(array_sorted)
+                {   var b = array_sorted;
     	            var x = 0;
-    	            for(var k=0;x<=302856;k++)
+    	            for(var k=0;x<=(b[17]/2);k++)
     	            { 
-    	            	var c = b[k];
-    	            	x = x + c;
+    	            	x = x + Number(b[k]);
     	            }
-    	            return c;
-                }*/
+    	            return b[18+(k-1)];
+                }
           function get_total(dataString,j)
                 {
     	            var array_1 = dataString.split("}");                       
@@ -268,18 +267,18 @@ function addDataToMap(data, map) {
                     var array_4 = array_3[1].toString().split(":");
                     var array_5 = [];
                     var array_5_names = [];
-                    for(var i=18;i>1;i--)                         //creating arr_rayyan_5 which is an array having only the population data
+                    for(var i=18;i>1;i--)                        
                     {   var array_6 = array_2[i].toString().split(":");
                         array_5[18-i] = array_6[1];
                         array_5_names[18-i] = array_6[0];
                     }
                     array_5[17] = array_4[1];
                     array_5_names[17] = array_4[0];
-                    var array_7 = sorted(array_5);      //creating a sorted array
+                    var array_7 = sorted(array_5,array_5_names);      //creating a sorted array
 
                     return array_7;
                 }
-          function sorted(array)
+          function sorted(array, array_names)
           {     var i=0;
           	    var array_final = [];
           		    array_final[i]= array[17];
@@ -300,6 +299,24 @@ function addDataToMap(data, map) {
           	        array_final[i+15]= array[6];
           	        array_final[i+16]= array[8];
           	        array_final[i+17]= array[2];
+          	        array_final[i+18]= array_names[17];
+          	        array_final[i+19]= array_names[10];
+          	        array_final[i+20]= array_names[11];
+          	        array_final[i+21]= array_names[13];
+          	        array_final[i+22]= array_names[4];
+          	        array_final[i+23]= array_names[1];
+          	        array_final[i+24]= array_names[14];
+          	        array_final[i+25]= array_names[16];
+          	        array_final[i+26]= array_names[15];
+          	        array_final[i+27]= array_names[12];
+          	        array_final[i+28]= array_names[0];
+          	        array_final[i+29]= array_names[9];
+          	        array_final[i+30]= array_names[7];
+          	        array_final[i+31]= array_names[3];
+          	        array_final[i+32]= array_names[5];
+          	        array_final[i+33]= array_names[6];
+          	        array_final[i+34]= array_names[8];
+          	        array_final[i+35]= array_names[2];
           	    return array_final;
           }
 
