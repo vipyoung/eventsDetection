@@ -151,9 +151,14 @@ function onEachFeature(feature, layer) {
     dictionary2[feature.properties.title]['name'] = feature.properties.title;
 }
 
-var link = './application/events3.json'
-$.getJSON(link, function(events) {
-    console.log("DEBUG:", events);
+
+
+
+
+var link = './application/events.json'
+//$.getJSON(link, function(events) {
+$.getJSON(link)
+    .done(function(events) {
     L.geoJSON(events, {
         style: function(feature) {
             return feature.properties && feature.properties.style;
@@ -302,7 +307,16 @@ $.getJSON(link, function(events) {
         manageLayers(dictionary2);
     });
     plot_loop(dictionary2);
+})
+ .fail(function(jqxhr, textStatus, error) {
+        var err = textStatus + ", " + error;
+        console.log("Request Failed: " + err);
 });
+
+
+
+
+
 
 function adjust_string(string, char_limit) {
     var output7 = '';
