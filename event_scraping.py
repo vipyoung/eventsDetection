@@ -43,6 +43,7 @@ class EventScarper:
     def get_events_urls(self, url):
         # extracts all the urls of different events from the RSS feed.
         urls = set()
+        cat=[]
         # collection of all the different contents
         list_of_content = []
         # parsing through RSS feed
@@ -58,12 +59,24 @@ class EventScarper:
             self.db.events.insert_one(title_and_summary)
             list_of_content.append(title_and_summary)
 
+            categorr = []
+            for i in category:
+                cate = i['term']
+
+                categorr.append(cate)
+
+            for i in range(len(categorr)):
+                temp = ((categorr[i]).encode("utf-8"))
+                categorr[i] = temp
+
+            cat.append(categorr[0])
+
         for post in feed_content.entries:
             print post.title + ": " + post.link + " "
             urls.add(post.link)
-        return urls
+        return urls,cat
 
-    def extract_event_info(self, url):
+    def extract_event_info(self, url,cate):
         info = ''
         locations = []
         date = ''
@@ -141,7 +154,7 @@ class EventScarper:
                     # filter coordinatess if it is inside qatar
                     if self.filter_in_qatar( place_geoloc, qatar_bbx) == False:
                         print place_geoloc
-                        feature = Feature(geometry=Point((place_geoloc[1], place_geoloc[0])), properties=  {"title": head, "information": info, "date": date, "image": image, "link" :url } )
+                        feature = Feature(geometry=Point((place_geoloc[0], place_geoloc[1])), properties=  {"title": head, "information": info, "date": date, "image": image, "link" :url ,"category": cate} )
                         self.event_lst.append(feature)
                         print '***********'
                     else:
@@ -170,18 +183,23 @@ class EventScarper:
     """
     def export_json(self, lst_features):
         geojson_data = FeatureCollection(lst_features)
-        with open('events.geojson', 'w') as f:
+        with open('eventsinforr.json', 'w') as f:
             json.dump(geojson_data, codecs.getwriter('utf-8')(f), ensure_ascii=False)
 
 if __name__ == "__main__":
     event_scraper = EventScarper()
 
     # collecting the different urls of events
-    events = event_scraper.get_events_urls(event_scraper.events_doha_link)
+    events,categorr = event_scraper.get_events_urls(event_scraper.events_doha_link)
     print events
     features = []
-    for link in list(events):
-        event_scraper.extract_event_info(link)
+    events_new = list(events)
+
+    # while(i<len(categorr)):
+
+    for i in range(len(events_new)):
+        event_scraper.extract_event_info(events_new[i], categorr[i])
+
 
     features = event_scraper.event_lst
 

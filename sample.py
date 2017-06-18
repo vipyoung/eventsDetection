@@ -43,6 +43,7 @@ class EventScarper:
     def get_events_urls(self, url):
         # extracts all the urls of different events from the RSS feed.
         urls = set()
+        cat=[]
         # collection of all the different contents
         list_of_content = []
         # parsing through RSS feed
@@ -58,22 +59,25 @@ class EventScarper:
             self.db.events.insert_one(title_and_summary)
             list_of_content.append(title_and_summary)
 
-            for item in range(len(category)):
-                cate=[]
-                results = [item['term'] for item in category]
-                print results
-                print'*******'
+            categorr = []
+            for i in category:
+                cate = i['term']
 
-            for i in range(len(results)):
-                results=results[i].encode("utf-8")
-            cate.append(results[0])
-            print cate
+                categorr.append(cate)
+
+
+            for i in range(len(categorr)):
+                temp = ((categorr[i]).encode("utf-8"))
+                categorr[i] = temp
+
+
+            cat.append(categorr[0])
 
 
         for post in feed_content.entries:
             print post.title + ": " + post.link + " "
             urls.add(post.link)
-        return urls,cate
+        return urls,cat
 
     def extract_event_info(self, url,cate):
         info = ''
@@ -121,7 +125,7 @@ class EventScarper:
             for j in range(len(locations[i])):
                 cleaned_locations.append(locations[i][j].encode("utf-8"))
         print cleaned_locations
-        geocoded_location = []
+        geocoded_location = set()
 
         for i in range(len(cleaned_locations)):
             #print self.geo.google_geocoding(cleaned_locations[i])
@@ -129,7 +133,7 @@ class EventScarper:
             #geocoded_location[cleaned_locations[i]] = self.geo.google_geocoding(cleaned_locations[i])
 
 
-            geocoded_location.append(self.geo.google_geocoding(cleaned_locations[i]))
+            geocoded_location.add(self.geo.google_geocoding(cleaned_locations[i]))
 
         # extracting the images of each event
         for image_tag in soup.findAll(lambda tag: tag.name == 'div' and tag.get('class') == ['single-post-thumb']):
@@ -141,11 +145,11 @@ class EventScarper:
             head = title_tag.text
 
         # putting all the data obtained in a json format
-        details = {"information": info, "date": date, "location": geocoded_location , "image": image}
+        #details = {"information": info, "date": date, "location": geocoded_location , "image": image}
 
         # inserting it in MongoDB
         qatar_bbx = [25.1136,25.5362,50.9496,51.2018]
-        self.db.eventinfor.insert_one(details)
+        #self.db.eventinfor.insert_one(details)
 
 
 
@@ -186,7 +190,7 @@ class EventScarper:
 
     def export_json(self, lst_features):
         geojson_data = FeatureCollection(lst_features)
-        with open('events.geojson', 'w') as f:
+        with open('eventsinforr.json', 'w') as f:
             json.dump(geojson_data, codecs.getwriter('utf-8')(f), ensure_ascii=False)
 
 if __name__ == "__main__":
@@ -197,13 +201,13 @@ if __name__ == "__main__":
     print events
     features = []
     print categorr
-    i = 0
-    while(i<len(categorr)):
+    events_new = list(events)
 
-        for link in list(events):
-            event_scraper.extract_event_info(link,categorr[i])
-        i=i+1
+   # while(i<len(categorr)):
 
-    features = event_scraper.event_lst
+    for i in range(len(events_new)):
+        event_scraper.extract_event_info(events_new[i],categorr[i])
 
-    event_scraper.export_json(features)
+   # features = event_scraper.event_lst
+
+#    event_scraper.export_json(features)
