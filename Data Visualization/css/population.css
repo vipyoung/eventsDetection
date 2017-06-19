@@ -3,37 +3,108 @@ body {
             margin: 0;
         }
 html, body, #map {
-	        padding: 0 357px;
+	        top: 0;
+	        left: 0;
             height: 100%;
-            width: 40%;
+            width: 77.72%;
             background-image: none;
-            background-color: #2F4F4F;
+            background-color: #2F4F4F;    
+            
         }
+
+#img {
+	        position:absolute;
+	        top:0;
+	        right:0;
+	        background-image: url("doha.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: right top;
+            opacity: 0.6;
+            height: 100%;
+            width: 53%;
+     
+}
+
 #div2 h2 {
 	        position:absolute;
-            top: 40px;
-            left: 10px;
-            font: times;
+            top: 20px;
+            right: -180px;
+            font: arial;
+            font-weight: bold;
             color: white;
+            font-size: 25px;
+            width:600px;
+
 }
 
 #div2 h4 {
 	        position:absolute;
-            top:70px;
-            left: 10px;
-            font: times;
+            top:60px;
+            right: -180px;
+            font: arial;
             font-weight: normal;
             color: white;
+            font-size: 20px;
+            width:600px;
 }
 
-#div1 {
+#household {
 	        position:absolute;
-            top:140px;
-            left: 10px;
+            top:150px;
+            right: 65px;
             font: times;
-            font-weight: normal;
+            font-weight: bold;
             color: white;
+            font-size: 20px;
 }
+
+
+#divzone {
+	        position:absolute;
+            top:430px;
+            right: 195px;
+            font: times;
+            font-weight: bold;
+            color: white;
+            font-size: 25px;
+}
+
+#div2 {
+	        position:absolute;
+            top:30px;
+            right: 290px;
+            font: times;
+            font-weight: bolder;
+            color: white;
+            font-size: 50px;
+}
+
+#div3 {
+	        position:absolute;
+            top:200px;
+            right: 495px;
+            font: times;
+            font-weight: bold;
+            color: white;
+            font-size: 25px;
+
+}
+#div4 {
+	        position:absolute;
+            top:200px;
+            right: 85px;
+            font: times;
+            font-weight: bold;
+            color: white;
+            font-size: 25px;
+
+}
+
+
+
+
+             
 
 
 
