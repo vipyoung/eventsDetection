@@ -22,7 +22,6 @@ var manualArr = [];
 //marker colors
 var blueIcon = new L.Icon({
     iconUrl: 'img/marker-icon-2x-blue.png',
-    //shadowUrl: 'img/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -32,7 +31,6 @@ var blueIcon = new L.Icon({
 
 var redIcon = new L.Icon({
     iconUrl: 'img/marker-icon-2x-red.png',
-    shadowUrl: 'img/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -42,7 +40,6 @@ var redIcon = new L.Icon({
 
 var greenIcon = new L.Icon({
     iconUrl: 'img/marker-icon-2x-green.png',
-    // shadowUrl: 'img/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -52,7 +49,6 @@ var greenIcon = new L.Icon({
 
 var orangeIcon = new L.Icon({
     iconUrl: 'img/marker-icon-2x-orange.png',
-    //shadowUrl: 'img/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -62,7 +58,6 @@ var orangeIcon = new L.Icon({
 
 var yellowIcon = new L.Icon({
     iconUrl: 'img/marker-icon-2x-yellow.png',
-    //shadowUrl: 'img/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -72,7 +67,6 @@ var yellowIcon = new L.Icon({
 
 var violetIcon = new L.Icon({
     iconUrl: 'img/marker-icon-2x-violet.png',
-    // shadowUrl: 'img/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -82,7 +76,6 @@ var violetIcon = new L.Icon({
 
 var greyIcon = new L.Icon({
     iconUrl: 'img/marker-icon-2x-grey.png',
-    //shadowUrl: 'img/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -92,7 +85,6 @@ var greyIcon = new L.Icon({
 
 var blackIcon = new L.Icon({
     iconUrl: 'img/marker-icon-2x-black.png',
-    //shadowUrl: 'img/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -155,7 +147,7 @@ function onEachFeature(feature, layer) {
 
 
 
-var link = './application/events.json'
+var link = './application/eventsinforr.json'
 //$.getJSON(link, function(events) {
 $.getJSON(link)
     .done(function(events) {
@@ -178,13 +170,12 @@ $.getJSON(link)
     manageLayers(dictionary2);
     //choose an event from the list
     $(".eventItem").click(function(event) {
-        console.log("events", Events);
         var newID = event.target.id;
         for (var key in dictionary2) {
             var dictValues = dictionary2[key];
 
             if (this.id == dictValues.name) {
-                var output8 = '<div class="sidebar-header header-cover box" style="padding-left:1%;color:white;background-image:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(' + dictValues.image + ');height:30vh;"><div class="resize" ><p style="font-size:19px;font-weight:950;font-family: "Arial Black", Times, serif;"><strong style="font-size:25px;">' + adjust_string(dictValues.name, 65) + '</strong><br>' + adjust_string(dictValues.information, 65) + '</p></div></div>'
+                var output8 = '<div class="sidebar-header header-cover box" style="padding-left:1%;color:white;background-image:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(' + dictValues.image + ');height:30vh;"><div class="resize" ><p style="font-size:19px;font-weight:950;font-family: "Arial Black", Times, serif;"><strong style="font-size:25px;">' + adjust_string(dictValues.name, 65) + '</strong><br>' + adjust_string(dictValues.information, 60) + '</p></div></div>'
                 $(".box").replaceWith(output8);
             }
         }
@@ -230,6 +221,12 @@ $.getJSON(link)
         manageLayers(dictionary2);
         clearManualLayer();
     });
+
+
+
+
+
+
 
     //list search function
     jQuery(document).ready(function($) {
@@ -282,9 +279,6 @@ $.getJSON(link)
     });
 
     $("#defaultView").click(function(event) {
-       // var output9 = '<div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo1.png);height:15vh;"><div class="resize" ></div></div>';
-      // var output9 = '<div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo12.bmp);height:19vh;">';
-      //var output9 =  ' <div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo18.bmp);height:19vh;">';
       var output9 = '<div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo19.bmp);height:19vh;">';
         $(".box").replaceWith(output9);
         var newID = event.target.id;
@@ -292,7 +286,6 @@ $.getJSON(link)
             animation: true,
             center: [25.296637, 51.517686]
         });
-        // renderSwitches();
         manageLayers(dictionary2)
     });
 
@@ -338,14 +331,14 @@ function adjust_string(string, char_limit) {
     return output7;
 }
 
-console.log("width", $('#backgroundImages').width());
-console.log("height", $('#backgroundImages').height());
-
+//for plotting all markers on the map as a helper function for most function
 function plot_loop(dictionary) {
+    var eventsSeenArr=[];
     for (var key in dictionary) {
         var dictValues = dictionary[key];
 
-        plot_marker(dictValues);
+        plot_marker(dictValues,eventsSeenArr);
+        eventsSeenArr.push(dictValues.name);
     }
 }
 
@@ -399,6 +392,8 @@ function addCustomMarker(dictionary) {
 
 //Convert time from 24H to 12H form (00:00:00) to (00:00 AM/PM)
 function to_12H(time24) {
+    if(time24 == "00:00:00"){return "12:00 AM"}
+    if(time24 == "12:00:00"){return "12:00 PM"}
     var offTime = time24.split(':');
     var hour = offTime[0];
     offTime = offTime.slice(0, 2);
@@ -419,7 +414,6 @@ function compare_time(t1, t2) {
     t2 = t2.replace(" ", ":");
     var offTime = t1.split(':');
     var offTime2 = t2.split(':');
-    console.log("offTime", offTime, offTime2);
     //compare AM/PM
     if (offTime[2] == "AM" && offTime2[2] == "PM") {
         return 2;
@@ -447,7 +441,6 @@ function compare_time(t1, t2) {
 //when 2nd & 3rd parameters are null checks with today's date
 function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-06-07 00:00:00 2017-05-21 00:00:00",06/14/2017 12:00 AM,06/28/2017 12:00 AM
 {
-    console.log('userStartTiming', userStartTiming, 'userEndTiming', userEndTiming);
     if (userStartTiming != '' && userEndTiming == '') {
         userEndTiming = "02/26/4498 12:10 AM";
     }
@@ -463,13 +456,7 @@ function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-
     var eventEndDate = eventSplit[0];
     //Convert event time from 24H to 12H   
     var eventEndTime = to_12H(eventSplit[1]);
-    console.log("12");
-    console.log(eventSplit);
     var eventStartTime = to_12H(eventSplit[3]);
-    console.log("eventStartDate", eventStartDate);
-    console.log("eventEndTime", eventEndTime);
-    console.log("eventEndDate", eventEndDate);
-    console.log("eventStartTime", eventStartTime);
     if (moment(eventEndDate, 'YYYY-MM-DD') < moment(eventStartDate, 'YYYY-MM-DD')) {
         return false;
     }
@@ -487,26 +474,11 @@ function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-
         return true;
     }
     var userStartTimingSplit = userStartTiming.split(" ");
-    console.log("userStartTimingSplit", userStartTimingSplit);
     var userStartDate = userStartTimingSplit[0];
-   // console.log("11");
-
     var userStartTime = userStartTimingSplit[1] + " " + userStartTimingSplit[2];
-   // console.log("12");
     var userEndTimingSplit = userEndTiming.split(" ");
-   // console.log("13");
     var userEndDate = userEndTimingSplit[0];
-    //console.log("14");
     var userEndTime = userEndTimingSplit[1] + " " + userEndTimingSplit[2];
-    console.log("eventStartTime", eventStartTime);
-    console.log("eventEndTime", eventEndTime);
-    console.log("eventEndDate", eventEndDate);
-    console.log("eventStartDate", eventStartDate);
-    console.log("eventStartTime", eventStartTime);
-    console.log("eventEndTime", eventEndTime);
-    console.log("userStartDate", userStartDate);
-    console.log("userEndDate", userEndDate);
-
     if ((moment(userEndDate, 'MM/DD/YYYY') < moment(userStartDate, 'MM/DD/YYYY'))) {
         alert("Not a valid time span");
     }
@@ -523,15 +495,10 @@ function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-
         (compare_time(userStartTime, eventStartTime) == 1)) {
         return false;
     }
-    console.log("3", moment(userEndDate, 'MM/DD/YYYY') == moment(userStartDate, 'MM/DD/YYYY'));
     if (moment(userEndDate, 'MM/DD/YYYY') >= moment(eventEndDate, 'YYYY-MM-DD') && moment(userEndDate, 'MM/DD/YYYY') <= moment(eventEndDate, 'YYYY-MM-DD') &&
         (compare_time(userEndTime, eventEndTime) == 2)) {
         return false;
     }
-    // console.log(moment(userEndDate, 'MM/DD/YYYY')<= moment(eventEndDate, 'YYYY-MM-DD'));
-
-    console.log('userEndDate', userEndDate)
-    console.log(moment(eventStartDate, 'YYYY-MM-DD') <= moment(userEndDate, 'MM/DD/YYYY'))
     return moment(userStartDate, 'MM/DD/YYYY') <= moment(eventEndDate, 'YYYY-MM-DD') &&
         moment(eventStartDate, 'YYYY-MM-DD') <= moment(userEndDate, 'MM/DD/YYYY') &&
         moment(userEndDate, 'MM/DD/YYYY') >= moment(eventEndDate, 'YYYY-MM-DD') &&
@@ -544,8 +511,9 @@ function convert_date_format(date) {
     return date2;
 }
 
-function plot_marker(eventDict) {
+function plot_marker(eventDict,eventsSeenArr) {
     var string = '';
+    console.log(eventDict.name);
     var eventDate = $.trim(eventDict.date);
     eventDate = eventDate.split(" ");
     var eventEndDate = eventDate[0];
@@ -599,7 +567,9 @@ function plot_marker(eventDict) {
         if (is_valid_date(eventDict.date, document.getElementById("datetimepicker4").value, document.getElementById("datetimepicker5").value)) {
             marker.addTo(mapLayer);
             mapArr.push(marker);
+            manage_list(true,eventDict,eventsSeenArr);
         } else {
+            manage_list(false,eventDict);
             return;
         }
     }
@@ -608,10 +578,15 @@ function plot_marker(eventDict) {
         if (get_distance(marker, person_position) < (document.getElementById("radiusSpinner").value) * 1000) {
             marker.addTo(mapLayer);
             mapArr.push(marker);
+            manage_list(true,eventDict,eventsSeenArr);
+            console.log("plot_marker2");
         } else {
+            manage_list(false,eventDict,eventsSeenArr);
             return;
         }
     } else {
+        console.log("plot_marker");
+        manage_list(true,eventDict,eventsSeenArr);
         marker.addTo(mapLayer);
         mapArr.push(marker);
     }
@@ -629,64 +604,6 @@ function manageLayers(dictionary) {
             map.addLayer(eval(color_array[i] + "Layer"));
         } else {
             map.removeLayer(eval(color_array[i] + "Layer"));
-        }
-    }
-
-    ul = document.getElementById("list_of_events");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        var dictValues = dictionary[li[i].id];
-        console.log("dcitjl",li[i].id);
-        if(li[i].id == "none"){break;}
-        var eventIndx = category_array.indexOf(dictValues.category);
-        var category_color = color_array[eventIndx];
-
-        if (!$("#checkbox-blue").is(':checked') && category_color == "blue") {
-            li[i].style.display = "none";
-        } else {
-            li[i].style.display = "";
-        }
-
-        if (!$("#checkbox-grey").is(':checked') && category_color == "grey") {
-            li[i].style.display = "none";
-        } else if (category_color == "grey") {
-            li[i].style.display = "";
-        }
-
-        if (!$("#checkbox-green").is(':checked') && category_color == "green") {
-            li[i].style.display = "none";
-        } else if (category_color == "green") {
-            li[i].style.display = "";
-        }
-
-        if (!$("#checkbox-red").is(':checked') && category_color == "red") {
-            li[i].style.display = "none";
-        } else if (category_color == "red") {
-            li[i].style.display = "";
-        }
-
-        if (!$("#checkbox-orange").is(':checked') && category_color == "orange") {
-            li[i].style.display = "none";
-        } else if (category_color == "orange") {
-            li[i].style.display = "";
-        }
-
-        if (!$("#checkbox-violet").is(':checked') && category_color == "violet") {
-            li[i].style.display = "none";
-        } else if (category_color == "violet") {
-            li[i].style.display = "";
-        }
-
-        if (!$("#checkbox-yellow").is(':checked') && category_color == "yellow") {
-            li[i].style.display = "none";
-        } else if (category_color == "yellow") {
-            li[i].style.display = "";
-        }
-
-        if (!$("#checkbox-black").is(':checked') && category_color == "black") {
-            li[i].style.display = "none";
-        } else if (category_color == "black") {
-            li[i].style.display = "";
         }
     }
 }
@@ -749,7 +666,7 @@ function zoom_to_pin(dictionary, category_array, Event) {
     }
     string += '</a>';
     if (dictValues.event_venue != null) {
-        string += '<div class="popup_txt"> <strong>Hosted by:</strong> ' + dictValues.event_venue + '</div>';
+        string += '<div class="popup_txt"> <strong>Location:</strong> ' + dictValues.event_venue + '</div>';
     }
     if (eventStartDate != null) {
         string += '<div class="popup_txt"> <strong>Date:</strong> ' + convert_date_format(eventStartDate) + " - " + convert_date_format(eventEndDate) + '</div>';
@@ -784,4 +701,29 @@ function listOfEvents() {
         eventsListOutput += '<li class="eventItem" id="' + Events[i] + '"><a href="#"  style="font-size:10; color: white; color: black;-webkit-text-fill-color: white;-webkit-text-stroke-width: 0.05px;-webkit-text-stroke-color: black;">'+ adjust_string(Events[i],49) + '</a></li> <li id="none" class="divider"></li>';
     }
     document.getElementById("list_of_events").innerHTML = eventsListOutput;
+}
+//
+function manage_list(condition,dictValues,eventsSeenArr)// to display item condition==true, else condition ==flase
+{   
+   var showDivider;
+ $('.live-search-list li').each(function() {
+
+    if(this.id!="none" && !eventsSeenArr.includes(this.id) ){
+       
+        if( this.id==dictValues.name && condition )
+        {
+            $(this).show();
+            showDivider=true;
+        }
+        else 
+        {
+            $(this).hide();
+            showDivider=false;            
+        } 
+    }
+    else if(!eventsSeenArr.includes(this.id)){
+     if(showDivider && this.id=="none"){$(this).show();}   
+    if(showDivider==false && this.id=="none"){$(this).hide();}
+    }    
+        });
 }
