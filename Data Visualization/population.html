@@ -40,22 +40,28 @@
 
     // updates info when municipalities are hovered over
     info.update = function (props) {
-        this._div.innerHTML = '<h3>Qatar population density</h3>' +'<b>' + '<h3>by municiaplity</h3>' +  (props ?
-             '<b>' + props.NAME_1 +' (' + props.NL_NAME_1 +')' : 'Move your mouse over a municipality');
+        this._div.innerHTML = '<h3>Qatar population density</h3>' +'<b>' +  (props ?
+             '<b>' + props.NAME_1 +' (' + props.NL_NAME_1 +')' : 'Click on a municipality to know more');
     };
 
     info.addTo(map);
-
     </script>
 
 
-
+<div id="img">
+</div>
 <div id="div2">
-<h2>Population by municipality</h2>
-<h4>Here we see the different municipalities in Qatar and by clicking on them we get<br>the data for the municipality</h4>
+<h2>Population of municipality and zones under them</h2>
+<h4>Here we see the different municipalities in Qatar and by clicking on them we get the data for the municipality and the zones under them</h4>
 </div>
-<div id="div1">
+
+<div id="divzone">
 </div>
+<div id="div3">
+</div>
+<div id="div4">
+</div>
+
 
 </body>
 
