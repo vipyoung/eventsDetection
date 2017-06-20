@@ -25,7 +25,6 @@ class EventScarper:
 
     def filter_in_qatar(self, geoloc_point, bbx):
         [lat, lng] = geoloc_point
-
         [min_lat, max_lat, min_lng, max_lng] = bbx
 
         if lat >= min_lat and lat <= max_lat and lng >= min_lng and lng <= max_lng:
@@ -43,7 +42,7 @@ class EventScarper:
     def get_events_urls(self, url):
         # extracts all the urls of different events from the RSS feed.
         urls = set()
-        cat=[]
+        category_list=[]
         # collection of all the different contents
         list_of_content = []
         # parsing through RSS feed
@@ -54,29 +53,28 @@ class EventScarper:
             summary = entry['summary']
             link = entry['link']
             author = entry['author_detail']
-            category = entry['tags']
-            title_and_summary = {"title": title, "summary": summary, "url": link, "author": author, "category": category}
+            tags = entry['tags']
+            title_and_summary = {"title": title, "summary": summary, "url": link, "author": author, "category": tags}
             self.db.events.insert_one(title_and_summary)
             list_of_content.append(title_and_summary)
 
-            categorr = []
-            for i in category:
-                cate = i['term']
+            event_category = []
+            for category in tags:
+                category_temp = category['term']
+                event_category.append(category_temp)
 
-                categorr.append(cate)
+            for i in range(len(event_category)):
+                temp = ((event_category[i]).encode("utf-8"))
+                event_category[i] = temp
 
-            for i in range(len(categorr)):
-                temp = ((categorr[i]).encode("utf-8"))
-                categorr[i] = temp
-
-            cat.append(categorr[0])
+            category_list.append(event_category[0])
 
         for post in feed_content.entries:
             print post.title + ": " + post.link + " "
             urls.add(post.link)
-        return urls,cat
+        return urls,category_list
 
-    def extract_event_info(self, url,cate):
+    def extract_event_info(self, url, category):
         info = ''
         locations = []
         date = ''
@@ -154,7 +152,7 @@ class EventScarper:
                     # filter coordinatess if it is inside qatar
                     if self.filter_in_qatar( place_geoloc, qatar_bbx) == False:
                         print place_geoloc
-                        feature = Feature(geometry=Point((place_geoloc[0], place_geoloc[1])), properties=  {"title": head, "information": info, "date": date, "image": image, "link" :url ,"category": cate} )
+                        feature = Feature(geometry=Point((place_geoloc[0], place_geoloc[1])), properties=  {"title": head, "information": info, "date": date, "image": image, "link" :url ,"category": category})
                         self.event_lst.append(feature)
                         print '***********'
                     else:
@@ -190,15 +188,16 @@ if __name__ == "__main__":
     event_scraper = EventScarper()
 
     # collecting the different urls of events
-    events,categorr = event_scraper.get_events_urls(event_scraper.events_doha_link)
+    events, category_list = event_scraper.get_events_urls(event_scraper.events_doha_link)
     print events
     features = []
     events_new = list(events)
+    print category_list
 
     # while(i<len(categorr)):
 
     for i in range(len(events_new)):
-        event_scraper.extract_event_info(events_new[i], categorr[i])
+        event_scraper.extract_event_info(events_new[i], category_list[i])
 
 
     features = event_scraper.event_lst
