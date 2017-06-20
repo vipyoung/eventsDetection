@@ -138,14 +138,6 @@ $(document).ready(function() {
     $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
   });
 })(jQuery);
-
-
-
-// $('#radiusSpinner').spinner('option', 'min', 0);
-// $('#radiusSpinner').spinner('option', 'max', 5);
-//$("#radiusSpinner").spinner({min: 0, max: 10});
-
-
  
 $("#EventsFilter").hide();
 $("#datetimepickers").hide();
@@ -157,16 +149,6 @@ $('input[name=checkboxCategories]').attr('checked', false);
 
 $("#checkboxCategories").click(function(event) {
             $('input[name=checkbox-blue]').attr('checked', true);
-        //     for (var i = 0; i < color_array.length; i++) {
-
-        //            $('input[name=checkbox-blue]').attr('checked', true);
-                    $('#checkbox-blue').checked = true;});
-   // $("p").hide();
-
- // var checkboxes = document.getElementsById('checkboxCustom');
- //  checkboxes.checked = false;
-// for (var i=0; i<checkboxes.length; i++)  {
-//   if (checkboxes[i].type == 'checkbox')   {
-//     checkboxes[i].checked = false;
-//   }
-// }
+            $('#checkbox-blue').checked = true;
+        });
+ 

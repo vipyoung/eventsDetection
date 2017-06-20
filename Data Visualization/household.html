@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="../../../AppData/Local/Sublime%20Text%203/Qatar-Map-Flag-300px.png"/>
+    <title>Household statistics</title>
+     
+    <link 
+        rel="stylesheet" 
+        href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+    <link                   
+        rel="stylesheet" 
+        href = "population.css"    
+    />
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <div id="div1"></div>
+    <div id="div2">
+    <h2>Total households by municipality</h2>
+    <h4>Here we see the different municipalities in Qatar and by clicking on them we get<br>the total households for the municipality</h4>
+    </div>
+    
+
+    <link rel="stylesheet" href = "infostyle.css"/>
+    <link rel="stylesheet" type="text/css" href="http://leaflet.github.io/Leaflet.label/leaflet.label.css"/>   <!-- for binding labels on map -->
+
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script> 
+    <script src="household.js"></script> 
+    <script>
+    // using map controls to add info to map 
+    var info = L.control();
+
+    info.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+        this.update();
+        return this._div;                            
+    };
+
+    
+    info.update = function (props) {
+        this._div.innerHTML = '<h3>Qatar households</h3>' +'<b>' + '<h3>by municipality</h3>' +  (props ?
+             '<b>' + props.NAME_1 +' (' + props.NL_NAME_1 +')' : 'Move your mouse over a municipality');
+    };
+
+    info.addTo(map);
+
+    </script>
+
+
+</body>
+
+</html>
+
+

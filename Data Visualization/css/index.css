@@ -1,0 +1,52 @@
+.jumbotron {
+	text-align: 50px;
+    background-color: #FFFACD; 
+    color: black;
+	padding: 80px;
+	background-image: url("doha-qatar-hd__large.png");
+}
+
+.col-sm-3 {
+    padding: 90px 115px;
+}
+
+
+.button_icon_1{
+	background-image: url("Escape_salou_icon_A.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	padding: 50px 70px;
+	font: sans-serif;
+	color: black;
+}
+
+.button_icon_2 {
+	background-image: url("yapi.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	padding: 50px 70px;
+	font:garamond;
+	color: black;
+}
+
+.button_icon_3 {
+	background-image: url("icohousing.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	padding: 50px 70px;
+	font:garamond;
+	color: black;
+}
+
+
+.button_icon_4 {
+	background-image: url("economico100p_480x480.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	padding: 50px 70px;
+	font:garamond;
+	color: black;
+}
+
+
+

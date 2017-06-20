@@ -1,181 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>QEvents</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <!-- carousel link -->
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
 
 
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="css/template.css">
 
 </head>
-<body>
-    <div class="container-fluid">
 
-        <div class="row" style="background-color: white;height:100vh;"> 
-            <div class="col-md-3" style="background-color: white;height:100vh;position: fixed;float: left;">
-                        <!-- Menu -->
-                <div class="side-menu" style="overflow-x: hidden;background-color: #F6F6F6;margin-left:-2vh;">
-                    <nav class="navbar navbar-default" role="navigation" style="background-color: #F6F6F6">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <!-- SEARCH PART -->
-                        <div class="navbar-header">
-                            <div class="brand-wrapper">
-                                <!-- Brand -->
-                                <div class="brand-name-wrapper" style="background-color: white;height: 10vh;">
-                                    <a id="logo" class="navbar-brand" href="#" ><img src="logo/logo1.png" style="width:25vh;margin-top: -2vh;margin-left: 8vh;"> </a>
-                                </div><!-- END BRAND -->
-                                <!-- Search -->
-                                <a data-toggle="collapse" href="#search" class="btn btn-default" id="search-trigger">
-                                    <span class="glyphicon glyphicon-search" style="height: 4vh;width: 3vh;margin-top: 3vh;"></span>
-                                </a>
-                                <!-- Search body -->
-                                <div id="search" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <form class="navbar-form" role="search">
-                                            <div class="form-group">
-                                                <input type="text" id="search_input" style="background-color:#F6F6F6;width: 100%;font-size: 150%;" onkeyup="search_function()" class="form-control" placeholder="Search">
-                                            </div>
-                                        </form>
-                                    </div>
+<body>
+  
+
+    <!-- Overlay for fixed sidebar -->
+    <div class="sidebar-overlay" style="background-color: maroon;"></div>
+
+    <!-- Material sidebar -->
+    <aside id="sidebar" class="sidebar sidebar-default open" role="navigation" style=" background-color: maroon">
+        <!-- Sidebar header -->
+         <div id="logo" class="logoBox" style=" background-color:white">
+        <div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo19.bmp);height:19vh;">
+            <div class="resize"  >
+            </div>
+        </div>
+         
+
+         
+            </div>
+            </div>
+         
+        <!-- Sidebar navigation -->
+        <ul class="nav sidebar-nav" style="background-color: maroon;" >
+
+            <li class="dropdown" >
+                <a class="ripple-effect dropdown-toggle" href="#" data-toggle="dropdown" style="color: white;background-color: maroon;"><span class="glyphicon glyphicon-filter " ></span>
+                Filter Events
+                <b class="caret"></b>
+            </a>
+                <ul class="dropdown-menu" style="margin-bottom: 2vh;">
+                    <li>
+                        <div class="checkbox">
+                            <input id="checkboxCustom" name="checkboxCustom" type="checkbox">
+                            <label for="checkboxCustom">
+                                Add Custom Marker
+                            </label>
+                        </div>
+                    </li>
+
+
+
+                    <li id="spinnerContainer">
+                    <span style="margin-left: 2vh;margin-right: -1.5vh; vertical-align:1vh;font-size: 18px;font-weight: 500;s"> Events</span>
+                        <div  style="display:inline-block;">
+                        <!-- <label style="margin-left: 8%;font-size: 15px;">Choose radius in Km</label> -->
+                        <div class="input-group spinner" style="margin-left: 10%;height: 2vh">
+                        
+                        <input type="text" id="radiusSpinner" class="form-control" value="0">
+                        <div class="input-group-btn-vertical">
+                          <button class="btn btn-default spinnerCLick" type="button"><i class="fa fa-caret-up"></i></button>
+                          <button class="btn btn-default spinnerCLick" type="button"><i class="fa fa-caret-down"></i></button>
+                        </div>
+                    </div>
+                    </div>
+                    <span style="vertical-align:1vh;font-size: 17px;font-weight: 500;"> km away</span>
+                    </li>
+                    <li>
+
+                        <div class="checkbox">
+                            <input id="checkboxDateFilter" name="checkboxDateFilter" type="checkbox">
+                            <label for="checkboxDateFilter">
+                                Filter by Date
+                            </label>
+                        </div>
+                    </li>
+
+                   <div id="datetimepickers">
+                    <li>
+                    <h5 style="margin-left: 2vh;">  from</h5>
+                        <div class="container" >
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <input type='text' class="form-control" id='datetimepicker4' style="width: 36vh;" />
                                 </div>
-                                <!-- END SEARCH BODY -->
+                                <script type="text/javascript">
+                                    $(function() {
+                                        $('#datetimepicker4').datetimepicker();                                
+                                    });
+                          
+                                                            
+                                </script>
                             </div>
                         </div>
-                        <!-- END SEARCH PART -->
-
-                        <!-- Main Menu -->
-                        <div class="side-menu-container" style="background-color:white">
-                            <ul class="nav navbar-nav" style="background-color:#F6F6F6;">
-                                <li><button class="btn btn-maroon" id="defaultView" style="width: 51vh;margin-top: .5em;height: 4vh;font-size: 120%;">Default View</button></li>
-                                 <li><button class="btn btn-maroon" id="plotCustomMarker" style="width: 51vh;margin-top: .5em;height: 4vh;font-size: 120%;">Show nearby events</button></li>
-                                 <li class="inline">
-                                 <label class="inline" style="padding-right:10px">Choose Raduis in km</label>
-                                <!--  <div class="btn-toolbar inline"> -->
-                                      <div class="btn-toolbar btn-group"> 
-                                        <a id="radius1" href="#" class="btn btn-danger">1</a>
-                                        <a id="radius2" href="#" class="btn btn-default">2</a>
-                                        <a id="radius3" href="#" class="btn btn-default">3</a>
-                                        <a id="radius4" href="#" class="btn btn-default">4</a>
-                                        <a id="radius5" href="#" class="btn btn-default">5</a>
-                                        <a id="radius6" href="#" class="btn btn-default">6</a>
-                                        <a id="radius7" href="#" class="btn btn-default">7</a>
-                                      </div>
-                                      </li>
-                                <!-- Dropdown-->
-                                <li class="panel panel-default" id="dropdown" style="height: 5vh;">
-                                    <a data-toggle="collapse" href="#dropdown-lvl1" style="height: 5vh;font-size: 150%;padding:1% 0;padding-bottom: 5vh;padding-top: 2vh;">
-                                        <span class="glyphicon glyphicon-filter " style="height: 5vh;padding-bottom:2px;z-index: 1000px;"></span> Filter Options <span class="caret"></span>
-                                    </a>
-                                    <!-- Dropdown level 1 -->
-                                    <div id="dropdown-lvl1" class="panel-collapse collapse" style="font-size: 100%;">
-                                        <div class="panel-body">
-                                            <ul id="EventsFilter" class="nav navbar-nav"></ul>
-                                            <ul class="nav navbar-nav"><div class="container">
-                                            <h4>Show Events Starting from</h4>
-                                                 <div class="form-group" style="width: 46vh;">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <input id="startingDate" type='text' class="form-control disabled" />
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                             <h4>to</h4>
-
-                                             <div class="form-group" style="width: 46vh;">
-                                                <div class='input-group date' id='datetimepicker2'>
-                                                    <input id="endingDate" type='text' class="form-control" />
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                                                           
-                                </div></ul>                                
-                                        </div>
-                                    </div>
-                                    <ul id="list_of_events" class="nav navbar-nav" style="width:100%;background-color:rgb(160,48,51,0.1);font-size: 150%;"></ul>
-                                </li>
-                            </ul>
+                    </li>
+                    <li>
+                    <h5 style="margin-left: 2vh;">  to</h5>
+                        <div class="container">
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <input type='text' class="form-control" id='datetimepicker5' style="width: 36vh;" />
+                                </div>
+                                <script type="text/javascript">
+                                    $(function() {
+                                        $('#datetimepicker5').datetimepicker();
+                                    });
+                                </script>
+                            </div>
                         </div>
-                        <!-- END MAIN MENU -->
-
-            </nav>
-        </div>
-
-
-        </div>
-            <div id="mapid" class="col-md-9" style="background-color: maroon;float: right;height:100vh;"></div>
-        </div>
-
-
+                    </li>
+                  </div>
+                  
+            </li>
             </div>
-            <div class="col-md-9" style="background-color:white;float: right;height:40vh;margin-left: -5vh;padding-left: -1vh;margin-top: 2vh;z-index: -2;">
-                       <div  id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" style="height:40vh;" >
 
-                    <!-- Indicators -->
-                    <ol id="carouselCounter" class="carousel-indicators"> </ol>
+            <li>
 
-                    <!-- Wrapper For Slides -->
-                    <div id="carouselWrapper" id="carouselWrapper" class="carousel-inner" role="listbox">            
+                <div class="checkbox">
+                    <input id="checkboxCategories" name="checkboxCategories" type="checkbox" >
+                    <label for="checkboxCategories">
+                        Filter By Category
+                    </label>
+                </div>
+            </li>
+           <div id="EventsFilter" style="padding-left: 2vh;">
+             <li><div class="checkbox checkbox-primary " ><div class="checkbox-green"><input id="checkbox-green" type="checkbox" checked="" > <label for="checkbox-green" >Primary</label></div></div></li>
+
+            <li><div class="checkbox checkbox-primary " ><div class="checkbox-blue"><input id="checkbox-blue" type="checkbox" checked="" >
+            <label for="checkbox-blue" >Primary</label></div></div></li>
 
 
-                    </div><!-- End of Wrapper For Slides -->
 
-                    <!-- Left Control -->
-                    <a class="left carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="prev">
-                        <span class="fa fa-angle-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-
-                    <!-- Right Control -->
-                    <a class="right carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="next">
-                        <span class="fa fa-angle-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-
-        </div> <!-- End  bootstrap-touch-slider Slider -->
- 
-
+            <li>
+                <div class="checkbox checkbox-primary " >
+                <div class="checkbox-orange">
+                    <input id="checkbox-orange"  type="checkbox" checked="" >
+                    <label for="checkbox-orange" >
+                        Primary
+                    </label>
+                </div>
+              </div>
+            </li>
+            <li>
+                <div class="checkbox checkbox-primary " >
+                <div class="checkbox-grey">
+                    <input id="checkbox-grey" type="checkbox" checked="" >
+                    <label for="checkbox-grey" >
+                        Primary
+                    </label>
+                </div>
+              </div>
+            </li>
+            <li>
+                <div class="checkbox checkbox-primary " >
+                <div class="checkbox-yellow">
+                    <input id="checkbox-yellow" type="checkbox" checked="" >
+                    <label for="checkbox-yellow" >
+                        Primary
+                    </label>
+                </div>
+              </div>
+            </li>
+            <li>
+                <div class="checkbox checkbox-primary " >
+                <div class="checkbox-violet">
+                    <input id="checkbox-violet" type="checkbox" checked="" >
+                    <label for="checkbox-violet" >
+                        Primary
+                    </label>
+                </div>
+              </div>
+            </li>
+            <li>
+                <div class="checkbox checkbox-primary " >
+                <div class="checkbox-red">
+                    <input id="checkbox-red" type="checkbox" checked="" >
+                    <label for="checkbox-red" >
+                        Primary
+                    </label>
+                </div>
+              </div>
+            </li>
+            <li>
+                <div class="checkbox checkbox-primary " >
+                <div class="checkbox-black">
+                    <input id="checkbox-black" type="checkbox" checked="" >
+                    <label for="checkbox-black" >
+                        Primary
+                    </label>
+                </div>
+              </div>
+            </li>
+            </div>
+            </ul>
+            </li>
             
+           <li>
+               
+               <input type="text" class="live-search-box d-inline-block" placeholder="Search Events" style="width: 67%;display: inline-block;" />
+                <button id="defaultView" class="btn btn-green d-inline-block" style="width: 27%;display: inline-block;height:4.5vh;">Default View</button>
+           </li>
+          <!--  <li> --><!-- </li> -->
 
-        
+            <ul id="list_of_events" class="live-search-list" style="margin-left: -4vh;height: 68vh;background-image:linear-gradient(rgba(128,0,0,1), rgba(128,0,0,0.67)), url(http://www.lauchlan-leishman.com/wp-content/uploads/2013/03/Loops-Background-1024x417.jpg); font-size: 10px;">
+          
+            </ul>
+            
+        </ul>
+      
+    </aside>
+
+    <div class="wrapper">
+        <!-- Sidebar Constructor -->
+        <div id="mapid" class="constructor" style="width: 153vh;height: 100vh;position: fixed;">
+
+        </div>
     </div>
+
+
+    <script type="text/javascript">
+       
+        $('.dropdown-menu').click(function(e) {
+            e.stopPropagation();
+        });
+
+    </script>
+    <script type="text/javascript" src="js/template.js"></script>
     <script type="text/javascript" src="js/moment.js"></script>
-<script type="text/javascript"  src="js/index.js"></script>
-  <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-              $(function () {
-                $('#datetimepicker2').datetimepicker();
-            });
-        </script>
-  
-        
+<script type="text/javascript" src="js/index.js"></script>
 </body>
+
 </html>
