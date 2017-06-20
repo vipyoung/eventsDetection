@@ -17,7 +17,10 @@ class EventScarper:
         self.event_lst = []
         #self.event_dict['type'] = 'FeatureCollection'
         #self.event_dict['features'] = []
-        self.db = self.init_mongo()
+        self.db = 'webevents'
+        self.db_connection = self.init_mongo()
+        self.event_collection = self.db_connection[self.db]['events']
+        self.eventinfor_collection = self.db_connection[self.db]['eventinfor']
         # creating object for the class
         self.geo = Geocode()
         # accessing the PYner server from QCRI
@@ -33,11 +36,13 @@ class EventScarper:
             return False
 
     def init_mongo(self):
+        connection = MongoClient('10.2.0.139', 27017)
+        print 'connection succesful'
         # connect mongo client to an instance of mogod
-        client = MongoClient()
+        #client = MongoClient()
         # create a db test
-        db = client.webevents
-        return db
+        db = 'webevents'
+        return connection
 
     def get_events_urls(self, url):
         # extracts all the urls of different events from the RSS feed.
@@ -55,7 +60,7 @@ class EventScarper:
             author = entry['author_detail']
             tags = entry['tags']
             title_and_summary = {"title": title, "summary": summary, "url": link, "author": author, "category": tags}
-            self.db.events.insert_one(title_and_summary)
+            self.event_collection.insert_one(title_and_summary)
             list_of_content.append(title_and_summary)
 
             event_category = []
@@ -144,7 +149,7 @@ class EventScarper:
 
         # inserting it in MongoDB
         qatar_bbx = [25.1136,25.5362,50.9496,51.2018]
-        self.db.eventinfor.insert_one(details)
+        self.eventinfor_collection.insert_one(details)
 
         try:
             for place_geoloc in geocoded_location:
