@@ -187,7 +187,7 @@ class EventScarper:
     def extract_event_info(self, url, category):
         info = ''
         locations = []
-        date = ''
+        date = []
         print '----------------'
         print url
         # using beautifulsoup to extract data from each URL of the events
@@ -202,7 +202,7 @@ class EventScarper:
             dates = datefinder.find_dates(string_with_dates)
             for date_string in dates:
                 # collecting all the date found in the text
-                date = date + ' ' + str(date_string)
+                date.append(str(date_string))
             # extracting all the text info
             info = info + geocoded_location.text + '\n'
 
