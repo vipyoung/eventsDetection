@@ -7,7 +7,7 @@
     "link": "http://www.eventsdoha.com/beat-the-heat-for-only-35qr-at-hamad-aquatic-center-adults/",
     "location": [
       {
-        "latitude": 25.2637146,
+        "latitude": 25.2637146, 
         "location_name": "Aspire Zone Sports City",
         "longitude": 51.4409012
       },
@@ -27,7 +27,7 @@
         "longitude": 51.443836
       }
     ],
-    "date": " 2017-06-11 00:00:00"
+    "date": " 2017-06-11 00:00:00 2017-06-11 00:00:00"
   },
   {
     "category": "Latest",
@@ -56,7 +56,7 @@
     "image": "http://www.eventsdoha.com/wp-content/uploads/2017/06/Oil-painting-morning-evening-Ramadan-2017-600x450.jpg",
     "link": "http://www.eventsdoha.com/oil-painting-workshop-for-adults/",
     "location": [],
-    "date": " 2017-06-11 00:00:00"
+    "date": " 2017-06-11 00:00:00 2017-06-11 00:00:00"
   },
   {
     "category": "Latest",
@@ -81,7 +81,7 @@
         "longitude": 51.443836
       }
     ],
-    "date": " 2017-06-11 00:00:00"
+    "date": " 2017-06-11 00:00:00 2017-06-11 00:00:00"
   },
   {
     "category": "Latest",
@@ -138,7 +138,7 @@
     "image": "http://www.eventsdoha.com/wp-content/uploads/2017/06/the-Club-Summer-Vibes-I-love-Q-Square.jpg",
     "link": "http://www.eventsdoha.com/eid-special-at-the-club/",
     "location": [],
-    "date": " 2017-06-18 00:00:00"
+    "date": " 2017-06-18 00:00:00 2017-06-18 00:00:00"
   },
   {
     "category": "Latest",
@@ -183,6 +183,6 @@
         "longitude": 51.443836
       }
     ],
-    "date": " 2017-06-11 00:00:00"
+    "date": " 2017-06-11 00:00:00 2017-06-11 00:00:00"
   }
 ]
