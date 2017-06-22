@@ -39,7 +39,7 @@ function addDataToMap(data, map) {
     }
 
 
-    function selectFeature(e) {            //function that selects municipality
+    function selectFeature(e) { //function that selects each municipality
     var layer = e.target;
     layer.setStyle({
         color: '#000000',
@@ -51,169 +51,169 @@ function addDataToMap(data, map) {
         }
         info.update(layer.feature.properties);
     }
-    
 
-    function zoomToFeature(e) {                   //to zoom each municipality 
+
+    function zoomToFeature(e) {  //zoom each feature (municipality)
     map.fitBounds(e.target.getBounds());
     }
-  
+
     function onEachFeature(feature, layer) {
 
     layer.on({
         mouseover: selectFeature,
         click: zoomToFeature
-        }); 
+        });
 
-    var label = L.marker(layer.getBounds().getCenter(), {          //to get text labels on each municipality
+    var label = L.marker(layer.getBounds().getCenter(), {
       icon: L.divIcon({
         className: 'label',
         html: feature.properties.NAME_1 + ' (' + feature.properties.NL_NAME_1 + ')',
         iconSize: [40, 70]
       })
      }).addTo(map);
-    
-   
-    layer.on('click', function(e) {                                //on click, the zones are shown 
+
+
+    layer.on('click', function(e) {
         var mun_name = feature.properties.NAME_1;
         $.getJSON("qatar_zone_population.geojson", function(data1) {
             if (mun_name == "Ar Rayyan")
                {var zone = L.geoJson(data1,{style: myStyle1,filter: addDataToMap1, onEachFeature: onEachFeature1});
                 zone.addTo(map);
                 $("#div2").load("result_totalpopulation.json", function(data,status){
-                    var a = get_total(data,4);
+                    var a = get_array_from_json(data,4);
                     var z = get_median_agegroup(a);
                     var text1 = "Total population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + a[17] + '<br><br>';
                     var text2 = "Median Age Group " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + z;
                     this.innerHTML = mun_name + '<br>';
                 $("#div3").load("result_femalepopulation.json", function(data,status){
-                    var a = get_total(data,4);
+                    var a = get_array_from_json(data,4);
 
                     var text3 = "Total female population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17]  + '<br><br>';
                     this.innerHTML = text1 + text2;
                 $("#div4").load("result_malepopulation.json", function(data,status){
-                    var a = get_total(data,4);
+                    var a = get_array_from_json(data,4);
 
                     this.innerHTML = text3 + "Total male population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17];
-                }); 
-                }); 
                 });
-                
+                });
+                });
+
                }
             else if (mun_name == "Ad Dawhah")
                	{var zone = L.geoJson(data1,{style: myStyle1,filter: addDataToMap2, onEachFeature: onEachFeature1});
                 zone.addTo(map);
                 $("#div2").load("result_totalpopulation.json", function(data,status){
-                    var a = get_total(data,1);
+                    var a = get_array_from_json(data,1);
                     var z = get_median_agegroup(a);
                     var text1 = "Total population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + a[17] + '<br><br>';
                     var text2 = "Median Age Group " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + z;
                     this.innerHTML = mun_name + '<br>';
                 $("#div3").load("result_femalepopulation.json", function(data,status){
-                    var a = get_total(data,1);
+                    var a = get_array_from_json(data,1);
 
                     var text3 = "Total female population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17]  + '<br><br>';
                     this.innerHTML = text1 + text2;
                 $("#div4").load("result_malepopulation.json", function(data,status){
-                    var a = get_total(data,1);
+                    var a = get_array_from_json(data,1);
 
                     this.innerHTML = text3 + "Total male population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17];
-                }); 
-                }); 
+                });
+                });
                 });
                }
             else if (mun_name == "Madinat ash Shamal")
                {var zone = L.geoJson(data1,{style: myStyle1,filter: addDataToMap3,onEachFeature: onEachFeature1});
                 zone.addTo(map);
                 $("#div2").load("result_totalpopulation.json", function(data,status){
-                    var a = get_total(data,5);
+                    var a = get_array_from_json(data,5);
                     var z = get_median_agegroup(a);
                     var text1 = "Total population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + a[17] + '<br><br>';
                     var text2 = "Median Age Group " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + z;
                     this.innerHTML = mun_name + '<br>';
                 $("#div3").load("result_femalepopulation.json", function(data,status){
-                    var a = get_total(data,5);
+                    var a = get_array_from_json(data,5);
 
                     var text3 = "Total female population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17]  + '<br><br>';
                     this.innerHTML = text1 + text2;
                 $("#div4").load("result_malepopulation.json", function(data,status){
-                    var a = get_total(data,5);
+                    var a = get_array_from_json(data,5);
 
                     this.innerHTML = text3 + "Total male population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17];
-                }); 
-                }); 
+                });
+                });
                 });
                }
             else if (mun_name == "Al Wakrah")
                {var zone = L.geoJson(data1,{style: myStyle1,filter: addDataToMap4, onEachFeature: onEachFeature1});
                 zone.addTo(map);
                 $("#div2").load("result_totalpopulation.json", function(data,status){
-                    var a = get_total(data,7);
+                    var a = get_array_from_json(data,7);
                     var z = get_median_agegroup(a);
                     var text1 = "Total population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + a[17] + '<br><br>';
                     var text2 = "Median Age Group " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + z;
                     this.innerHTML = mun_name + '<br>';
                 $("#div3").load("result_femalepopulation.json", function(data,status){
-                    var a = get_total(data,7);
+                    var a = get_array_from_json(data,7);
 
                     var text3 = "Total female population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17]  + '<br><br>';
                     this.innerHTML = text1 + text2;
                 $("#div4").load("result_malepopulation.json", function(data,status){
-                    var a = get_total(data,7);
+                    var a = get_array_from_json(data,7);
 
                     this.innerHTML = text3 + "Total male population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17];
-                }); 
-                }); 
+                });
+                });
                 });
                }
             else if (mun_name == "Al Khor")
-               {var zone = L.geoJson(data1,{style: myStyle1,filter: addDataToMap5, onEachFeature: onEachFeature1});
+               	{var zone = L.geoJson(data1,{style: myStyle1,filter: addDataToMap5, onEachFeature: onEachFeature1});
                 zone.addTo(map);
                 $("#div2").load("result_totalpopulation.json", function(data,status){
-                    var a = get_total(data,2);
+                    var a = get_array_from_json(data,2);
                     var z = get_median_agegroup(a);
                     var text1 = "Total population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + a[17] + '<br><br>';
                     var text2 = "Median Age Group " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + z;
                     this.innerHTML = mun_name + '<br>';
                 $("#div3").load("result_femalepopulation.json", function(data,status){
-                    var a = get_total(data,2);
+                    var a = get_array_from_json(data,2);
 
                     var text3 = "Total female population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17]  + '<br><br>';
                     this.innerHTML = text1 + text2;
                 $("#div4").load("result_malepopulation.json", function(data,status){
-                    var a = get_total(data,2);
+                    var a = get_array_from_json(data,2);
 
                     this.innerHTML = text3 + "Total male population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17];
-                }); 
-                }); 
+                });
+                });
                 });
                }
             else if (mun_name == "Umm Salal")
                {var zone = L.geoJson(data1,{style: myStyle1,filter: addDataToMap6, onEachFeature: onEachFeature1});
                 zone.addTo(map);
                 $("#div2").load("result_totalpopulation.json", function(data,status){
-                    var a = get_total(data,8);
+                    var a = get_array_from_json(data,8);
                     var z = get_median_agegroup(a);
                     var text1 = "Total population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + a[17] + '<br><br>';
                     var text2 = "Median Age Group " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + z;
                     this.innerHTML = mun_name + '<br>';
                 $("#div3").load("result_femalepopulation.json", function(data,status){
-                    var a = get_total(data,8);
+                    var a = get_array_from_json(data,8);
 
                     var text3 = "Total female population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17]  + '<br><br>';
                     this.innerHTML = text1 + text2;
                 $("#div4").load("result_malepopulation.json", function(data,status){
-                    var a = get_total(data,8);
+                    var a = get_array_from_json(data,8);
 
                     this.innerHTML = text3 + "Total male population " + '<br>' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + a[17];
-                }); 
-                }); 
+                });
+                });
                 });
                }
             else if (mun_name == "Al Daayen")
                {var zone = L.geoJson(data1,{style: myStyle1,filter: addDataToMap7, onEachFeature: onEachFeature1});
                 zone.addTo(map);
                 $("#div1").load("result_totalpopulation.json", function(data,status){
-                    var array_1 = data.split("}");                       
+                    var array_1 = data.split("}");
                     var array_2 = array_1[0].toString().split(",");
                     var array_3 = array_2[0].toString().split("{");
                     var array_4 = array_3[2].toString().split(":");
@@ -230,7 +230,7 @@ function addDataToMap(data, map) {
 
                     var text1 = "Total population: " + array_7[17] + '<br>' + "Median age group: " + '<br>';
                 $("#div1").load("result_femalepopulation.json", function(data,status){
-                    var array_1 = data.split("}");                       
+                    var array_1 = data.split("}");
                     var array_2 = array_1[0].toString().split(",");
                     var array_3 = array_2[0].toString().split("{");
                     var array_4 = array_3[2].toString().split(":");
@@ -247,7 +247,7 @@ function addDataToMap(data, map) {
 
                     var text2 = "Total female population: " + array_7[17] + '<br>';
                 $("#div1").load("result_malepopulation.json", function(data,status){
-                    var array_1 = data.split("}");                       
+                    var array_1 = data.split("}");
                     var array_2 = array_1[0].toString().split(",");
                     var array_3 = array_2[0].toString().split("{");
                     var array_4 = array_3[2].toString().split(":");
@@ -260,7 +260,7 @@ function addDataToMap(data, map) {
                     }
                     array_5[17] = array_4[1];
                     array_5_names[17] = array_4[0];
-                    var array_7 = sorted(array_5);  
+                    var array_7 = sorted(array_5);
 
                     this.innerHTML = "Municipality: " + mun_name + '<br>' + text1 + text2 + "Total male population: " + array_7[17];
                 });
@@ -272,14 +272,14 @@ function addDataToMap(data, map) {
                 {   var b = array_sorted;
     	            var x = 0;
     	            for(var k=0;x<=(b[17]/2);k++)
-    	            { 
+    	            {
     	            	x = x + Number(b[k]);
     	            }
     	            return b[18+(k-1)];
                 }
-          function get_total(dataString,j)
+          function get_array_from_json(dataString,j)
                 {
-    	            var array_1 = dataString.split("}");                       
+    	            var array_1 = dataString.split("}");
                     var array_2 = array_1[j].toString().split(",");
                     var array_3 = array_2[1].toString().split("{");
                     var array_4 = array_3[1].toString().split(":");
@@ -292,11 +292,11 @@ function addDataToMap(data, map) {
                     }
                     array_5[17] = array_4[1];
                     array_5_names[17] = array_4[0];
-                    var array_7 = sorted(array_5,array_5_names);      //creating a sorted array
+                    var array_7 = sorted(array_5,array_5_names);
 
                     return array_7;
                 }
-          function sorted(array, array_names)
+          function sorted(array, array_names) //sorting the array
           {     var i=0;
           	    var array_final = [];
           		    array_final[i]= array[17];
@@ -338,7 +338,7 @@ function addDataToMap(data, map) {
           	    return array_final;
           }
 
-        function onEachFeature1(feature,layer)                //for zone geojson-to add zone details when municipality is clicked
+        function onEachFeature1(feature,layer) //for zone geojson-to add zone details when municipality is clicked
         {
         	layer.on({
         mouseover: selectFeature,
