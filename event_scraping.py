@@ -203,6 +203,7 @@ class EventScarper:
             for date_string in dates:
                 # collecting all the date found in the text
                 date.append(str(date_string))
+            print date
             # extracting all the text info
             info = info + geocoded_location.text + '\n'
 
