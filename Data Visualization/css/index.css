@@ -1,13 +1,41 @@
-.jumbotron {
-	text-align: 50px;
-    background-color: #FFFACD; 
-    color: black;
-	padding: 80px;
-	background-image: url("doha-qatar-hd__large.png");
+#image {
+	        position:absolute;
+	        top:0;
+	        right:0;
+	        background-image: url("doha-qatar-hd__large.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: right top;
+            opacity: 0.95;
+            height: 100%;
+            width: 100%;
+            color: white;
+
 }
 
-.col-sm-3 {
-    padding: 90px 115px;
+.text h1 {
+
+           font-size: 50px;
+           text-align: center;
+           line-height: 150px;
+           padding:50px 50px;
+           font-weight: bold;
+           font-family: sans-serif;
+}
+
+.text p3 {
+	       font-size: 25px;
+           text-align: center;
+           padding:350px 400px;
+           font-weight: bold;
+           font-family: sans-serif;
+}
+
+
+
+
+.col-sm-1 {
+    padding: 190px 230px;
 }
 
 
@@ -16,7 +44,7 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	padding: 50px 70px;
-	font: sans-serif;
+	font-family: sans-serif;
 	color: black;
 }
 
@@ -25,7 +53,7 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	padding: 50px 70px;
-	font:garamond;
+	font-family: sans-serif;
 	color: black;
 }
 
@@ -34,19 +62,8 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	padding: 50px 70px;
-	font:garamond;
+	font-family:sans-serif;
 	color: black;
 }
-
-
-.button_icon_4 {
-	background-image: url("economico100p_480x480.png");
-	background-position: center;
-	background-repeat: no-repeat;
-	padding: 50px 70px;
-	font:garamond;
-	color: black;
-}
-
 
 
