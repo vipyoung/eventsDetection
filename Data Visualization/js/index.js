@@ -411,8 +411,3 @@ function addDataToMap(data, map) {
     //layer.bindLabel(feature.properties.NAME_1);
     //layer.addTo(map);
     }
-
-
-     
-
-       
