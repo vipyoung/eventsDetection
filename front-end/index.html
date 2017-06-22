@@ -1,252 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <title>QEvents</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
-
-    <!-- carousel link -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
-
-
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-    <link rel="stylesheet" href="css/template.css">
-
-</head>
-
-<body>
-  
-
-    <!-- Overlay for fixed sidebar -->
-    <div class="sidebar-overlay" style="background-color: maroon;"></div>
-
-    <!-- Material sidebar -->
-    <aside id="sidebar" class="sidebar sidebar-default open" role="navigation" style=" background-color: maroon">
-        <!-- Sidebar header -->
+   <head>
+      <title>QEvents</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
+      <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
+      <!-- carousel link -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+      <link rel="stylesheet" href="css/template.css">
+   </head>
+   <body>
+      <!-- Overlay for fixed sidebar -->
+      <div class="sidebar-overlay" style="background-color: maroon;"></div>
+      <!-- Material sidebar -->
+      <aside id="sidebar" class="sidebar sidebar-default open" role="navigation" style=" background-color: maroon">
+         <!-- Sidebar header -->
          <div id="logo" class="logoBox" style=" background-color:white">
-        <div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo19.bmp);height:19vh;">
-            <div class="resize"  >
+            <div id="mainImage" class="sidebar-header header-cover box" style="background-image:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url(logo/logo19.bmp);height:19vh;">
+               <div class="resize"  >
+               </div>
             </div>
-        </div>
-         
-
-         
-            </div>
-            </div>
-         
-        <!-- Sidebar navigation -->
-        <ul class="nav sidebar-nav" style="background-color: maroon;" >
-
+         </div>
+         </div>
+         <!-- Sidebar navigation -->
+         <ul class="nav sidebar-nav" style="background-color: maroon;" >
             <li class="dropdown" >
-                <a class="ripple-effect dropdown-toggle" href="#" data-toggle="dropdown" style="color: white;background-color: maroon;"><span class="glyphicon glyphicon-filter " ></span>
-                Filter Events
-                <b class="caret"></b>
-            </a>
-                <ul class="dropdown-menu" style="margin-bottom: 2vh;">
-                    <li>
-                        <div class="checkbox">
-                            <input id="checkboxCustom" name="checkboxCustom" type="checkbox">
-                            <label for="checkboxCustom">
-                                Add Custom Marker
-                            </label>
-                        </div>
-                    </li>
-
-
-
-                    <li id="spinnerContainer">
-                    <span style="margin-left: 2vh;margin-right: -1.5vh; vertical-align:1vh;font-size: 18px;font-weight: 500;s"> Events</span>
-                        <div  style="display:inline-block;">
+               <a class="ripple-effect dropdown-toggle" href="#" data-toggle="dropdown" style="color: white;background-color: maroon;"><span class="glyphicon glyphicon-filter " ></span>
+               Filter Events
+               <b class="caret"></b>
+               </a>
+               <ul class="dropdown-menu" style="margin-bottom: 2vh;">
+                  <li>
+                     <div class="checkbox">
+                        <input id="checkboxCustom" name="checkboxCustom" type="checkbox">
+                        <label for="checkboxCustom">
+                        Add Custom Marker
+                        </label>
+                     </div>
+                  </li>
+                  <li id="spinnerContainer">
+                     <span style="margin-left: 2vh;margin-right: -1.5vh; vertical-align:1vh;font-size: 18px;font-weight: 500;s"> Events</span>
+                     <div  style="display:inline-block;">
                         <!-- <label style="margin-left: 8%;font-size: 15px;">Choose radius in Km</label> -->
                         <div class="input-group spinner" style="margin-left: 10%;height: 2vh">
-                        
-                        <input type="text" id="radiusSpinner" class="form-control" value="0">
-                        <div class="input-group-btn-vertical">
-                          <button class="btn btn-default spinnerCLick" type="button"><i class="fa fa-caret-up"></i></button>
-                          <button class="btn btn-default spinnerCLick" type="button"><i class="fa fa-caret-down"></i></button>
+                           <input type="text" id="radiusSpinner" class="form-control" value="0">
+                           <div class="input-group-btn-vertical">
+                              <button class="btn btn-default spinnerCLick" type="button"><i class="fa fa-caret-up"></i></button>
+                              <button class="btn btn-default spinnerCLick" type="button"><i class="fa fa-caret-down"></i></button>
+                           </div>
                         </div>
-                    </div>
-                    </div>
-                    <span style="vertical-align:1vh;font-size: 17px;font-weight: 500;"> km away</span>
-                    </li>
-                    <li>
-
-                        <div class="checkbox">
-                            <input id="checkboxDateFilter" name="checkboxDateFilter" type="checkbox">
-                            <label for="checkboxDateFilter">
-                                Filter by Date
-                            </label>
-                        </div>
-                    </li>
-
-                   <div id="datetimepickers">
-                    <li>
-                    <h5 style="margin-left: 2vh;">  from</h5>
+                     </div>
+                     <span style="vertical-align:1vh;font-size: 17px;font-weight: 500;"> km away</span>
+                  </li>
+                  <li>
+                     <div class="checkbox">
+                        <input id="checkboxDateFilter" name="checkboxDateFilter" type="checkbox">
+                        <label for="checkboxDateFilter">
+                        Filter by Date
+                        </label>
+                     </div>
+                  </li>
+                  <div id="datetimepickers">
+                     <li>
+                        <h5 style="margin-left: 2vh;">  from</h5>
                         <div class="container" >
-                            <div class="row">
-                                <div class='col-sm-4'>
-                                    <input type='text' class="form-control" id='datetimepicker4' style="width: 36vh;" />
-                                </div>
-                                <script type="text/javascript">
-                                    $(function() {
-                                        $('#datetimepicker4').datetimepicker();                                
-                                    });
-                          
-                                                            
-                                </script>
-                            </div>
+                           <div class="row">
+                              <div class='col-sm-4'>
+                                 <input type='text' class="form-control" id='datetimepicker4' style="width: 36vh;" />
+                              </div>
+                              <script type="text/javascript">
+                                 $(function() {
+                                     $('#datetimepicker4').datetimepicker();                                
+                                 });
+                                 
+                                                         
+                              </script>
+                           </div>
                         </div>
-                    </li>
-                    <li>
-                    <h5 style="margin-left: 2vh;">  to</h5>
+                     </li>
+                     <li>
+                        <h5 style="margin-left: 2vh;">  to</h5>
                         <div class="container">
-                            <div class="row">
-                                <div class='col-sm-4'>
-                                    <input type='text' class="form-control" id='datetimepicker5' style="width: 36vh;" />
-                                </div>
-                                <script type="text/javascript">
-                                    $(function() {
-                                        $('#datetimepicker5').datetimepicker();
-                                    });
-                                </script>
-                            </div>
+                           <div class="row">
+                              <div class='col-sm-4'>
+                                 <input type='text' class="form-control" id='datetimepicker5' style="width: 36vh;" />
+                              </div>
+                              <script type="text/javascript">
+                                 $(function() {
+                                     $('#datetimepicker5').datetimepicker();
+                                 });
+                              </script>
+                           </div>
                         </div>
-                    </li>
+                     </li>
                   </div>
-                  
-            </li>
-            </div>
-
-            <li>
-
-                <div class="checkbox">
-                    <input id="checkboxCategories" name="checkboxCategories" type="checkbox" >
-                    <label for="checkboxCategories">
+                  </li>
+                  </div>
+                  <li>
+                     <div class="checkbox">
+                        <input id="checkboxCategories" name="checkboxCategories" type="checkbox" >
+                        <label for="checkboxCategories">
                         Filter By Category
-                    </label>
-                </div>
+                        </label>
+                     </div>
+                  </li>
+                  <div id="EventsFilter" style="padding-left: 2vh;">
+                     <li>
+                        <div class="checkbox checkbox-primary " >
+                           <div class="checkbox-green"><input id="checkbox-green" type="checkbox" checked="" > <label for="checkbox-green" >Primary</label></div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="checkbox checkbox-primary " >
+                           <div class="checkbox-blue"><input id="checkbox-blue" type="checkbox" checked="" >
+                              <label for="checkbox-blue" >Primary</label>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="checkbox checkbox-primary " >
+                           <div class="checkbox-orange">
+                              <input id="checkbox-orange"  type="checkbox" checked="" >
+                              <label for="checkbox-orange" >
+                              Primary
+                              </label>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="checkbox checkbox-primary " >
+                           <div class="checkbox-grey">
+                              <input id="checkbox-grey" type="checkbox" checked="" >
+                              <label for="checkbox-grey" >
+                              Primary
+                              </label>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="checkbox checkbox-primary " >
+                           <div class="checkbox-yellow">
+                              <input id="checkbox-yellow" type="checkbox" checked="" >
+                              <label for="checkbox-yellow" >
+                              Primary
+                              </label>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="checkbox checkbox-primary " >
+                           <div class="checkbox-violet">
+                              <input id="checkbox-violet" type="checkbox" checked="" >
+                              <label for="checkbox-violet" >
+                              Primary
+                              </label>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="checkbox checkbox-primary " >
+                           <div class="checkbox-red">
+                              <input id="checkbox-red" type="checkbox" checked="" >
+                              <label for="checkbox-red" >
+                              Primary
+                              </label>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="checkbox checkbox-primary " >
+                           <div class="checkbox-black">
+                              <input id="checkbox-black" type="checkbox" checked="" >
+                              <label for="checkbox-black" >
+                              Primary
+                              </label>
+                           </div>
+                        </div>
+                     </li>
+                  </div>
+               </ul>
             </li>
-           <div id="EventsFilter" style="padding-left: 2vh;">
-             <li><div class="checkbox checkbox-primary " ><div class="checkbox-green"><input id="checkbox-green" type="checkbox" checked="" > <label for="checkbox-green" >Primary</label></div></div></li>
-
-            <li><div class="checkbox checkbox-primary " ><div class="checkbox-blue"><input id="checkbox-blue" type="checkbox" checked="" >
-            <label for="checkbox-blue" >Primary</label></div></div></li>
-
-
-
             <li>
-                <div class="checkbox checkbox-primary " >
-                <div class="checkbox-orange">
-                    <input id="checkbox-orange"  type="checkbox" checked="" >
-                    <label for="checkbox-orange" >
-                        Primary
-                    </label>
-                </div>
-              </div>
-            </li>
-            <li>
-                <div class="checkbox checkbox-primary " >
-                <div class="checkbox-grey">
-                    <input id="checkbox-grey" type="checkbox" checked="" >
-                    <label for="checkbox-grey" >
-                        Primary
-                    </label>
-                </div>
-              </div>
-            </li>
-            <li>
-                <div class="checkbox checkbox-primary " >
-                <div class="checkbox-yellow">
-                    <input id="checkbox-yellow" type="checkbox" checked="" >
-                    <label for="checkbox-yellow" >
-                        Primary
-                    </label>
-                </div>
-              </div>
-            </li>
-            <li>
-                <div class="checkbox checkbox-primary " >
-                <div class="checkbox-violet">
-                    <input id="checkbox-violet" type="checkbox" checked="" >
-                    <label for="checkbox-violet" >
-                        Primary
-                    </label>
-                </div>
-              </div>
-            </li>
-            <li>
-                <div class="checkbox checkbox-primary " >
-                <div class="checkbox-red">
-                    <input id="checkbox-red" type="checkbox" checked="" >
-                    <label for="checkbox-red" >
-                        Primary
-                    </label>
-                </div>
-              </div>
-            </li>
-            <li>
-                <div class="checkbox checkbox-primary " >
-                <div class="checkbox-black">
-                    <input id="checkbox-black" type="checkbox" checked="" >
-                    <label for="checkbox-black" >
-                        Primary
-                    </label>
-                </div>
-              </div>
-            </li>
-            </div>
-            </ul>
-            </li>
-            
-           <li>
-               
                <input type="text" class="live-search-box d-inline-block" placeholder="Search Events" style="width: 67%;display: inline-block;" />
-                <button id="defaultView" class="btn btn-green d-inline-block" style="width: 27%;display: inline-block;height:4.5vh;">Default View</button>
-           </li>
-          <!--  <li> --><!-- </li> -->
-
+               <button id="defaultView" class="btn btn-green d-inline-block" style="width: 27%;display: inline-block;height:4.5vh;">Default View</button>
+            </li>
+            <!--  <li> --><!-- </li> -->
             <ul id="list_of_events" class="live-search-list" style="margin-left: -4vh;height: 68vh;background-image:linear-gradient(rgba(128,0,0,1), rgba(128,0,0,0.67)), url(http://www.lauchlan-leishman.com/wp-content/uploads/2013/03/Loops-Background-1024x417.jpg); font-size: 10px;">
-          
             </ul>
-            
-        </ul>
-      
-    </aside>
-
-    <div class="wrapper">
-        <!-- Sidebar Constructor -->
-        <div id="mapid" class="constructor" style="width: 153vh;height: 100vh;position: fixed;">
-
-        </div>
-    </div>
-
-
-    <script type="text/javascript">
-       
-        $('.dropdown-menu').click(function(e) {
-            e.stopPropagation();
-        });
-
-    </script>
-    <script type="text/javascript" src="js/template.js"></script>
-    <script type="text/javascript" src="js/moment.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-</body>
-
+         </ul>
+      </aside>
+      <div class="wrapper">
+         <!-- Sidebar Constructor -->
+         <div id="mapid" class="constructor" style="width: 153vh;height: 100vh;position: fixed;">
+         </div>
+      </div>
+      <script type="text/javascript">
+         $('.dropdown-menu').click(function(e) {
+             e.stopPropagation();
+         });
+         
+      </script>
+      <script type="text/javascript" src="js/template.js"></script>
+      <script type="text/javascript" src="js/moment.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+   </body>
 </html>
