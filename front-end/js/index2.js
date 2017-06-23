@@ -18,6 +18,8 @@ var orangeArr = [];
 var greenArr = [];
 var violetArr = [];
 var greyArr = [];
+var yellowArr = [];
+var blackArr = [];
 var manualArr = [];
 
 //marker colors
@@ -414,6 +416,9 @@ function processData(dictionary) {
         if (!category_array.includes(dictValues.category)) {
             category_array.push(dictValues.category);
         }
+        // var categoryIndx = category_array.indexOf(dictValues.category);
+        // eval(color_array[categoryIndx]+"Arr").push(dictValues.name);
+        // console.log(blueArr,redArr);
     }
 }
 
@@ -603,7 +608,7 @@ function plot_marker(eventDict, eventsSeenArr) {
     var event_name = eventDict.name;
     if (!(event_name in markers_dictionary)) {
         markers_dictionary[event_name] = [];
-        console.log("00");
+       // console.log("00");
     }
     var event_array = markers_dictionary[event_name];
     var count = 0;
@@ -626,7 +631,8 @@ function plot_marker(eventDict, eventsSeenArr) {
     if ($("#checkboxDateFilter").is(':checked')) {
         if (is_valid_date(eventDict.date, document.getElementById("datetimepicker4").value, document.getElementById("datetimepicker5").value)) {
             marker.addTo(mapLayer);
-            mapArr.push(marker);
+           // mapArr.push(marker);
+            mapArr.push(eventDict.name);
             manage_list(true, eventDict, eventsSeenArr);
         } else {
             manage_list(false, eventDict,eventsSeenArr);
@@ -637,7 +643,8 @@ function plot_marker(eventDict, eventsSeenArr) {
         mapLayer.removeLayer(marker);
         if (get_distance(marker, person_position) < (document.getElementById("radiusSpinner").value) * 1000) {
             marker.addTo(mapLayer);
-            mapArr.push(marker);
+           // mapArr.push(marker);
+           mapArr.push(eventDict.name);
             manage_list(true, eventDict, eventsSeenArr);
         } else {
             manage_list(false, eventDict, eventsSeenArr);
@@ -646,8 +653,10 @@ function plot_marker(eventDict, eventsSeenArr) {
     } else {
         manage_list(true, eventDict, eventsSeenArr);
         marker.addTo(mapLayer);
-        mapArr.push(marker);
+        //mapArr.push(marker);
+        mapArr.push(eventDict.name);
     }
+   // console.log(blueArr);
 }
 //
 function manageLayers(dictionary) {
@@ -655,13 +664,34 @@ function manageLayers(dictionary) {
         add_layers();
         return;
     }
+    // for(var key in dictionary){
+
+
+    $('.live-search-list li').each(function() {       
+            console.log(this.id);
+            if(this.id!="none"){
+            var dictValues = dictionary[this.id];
+            var EventCategory = dictValues.category;
+            var categoryIndx = category_array.indexOf(EventCategory);        
+            if(eval(color_array[categoryIndx] + "Arr").includes(this.id))
+            if ($('#checkbox-' + color_array[categoryIndx]).is(':checked')) {
+                  $(this).show();
+            } else {
+                $(this).hide();
+            }       
+            }     
+         });
     for (var i = 0; i < color_array.length; i++) {
+         
+
+
         if ($('#checkbox-' + color_array[i]).is(':checked')) {
             map.addLayer(eval(color_array[i] + "Layer"));
         } else {
             map.removeLayer(eval(color_array[i] + "Layer"));
         }
-    }
+    //}
+}
 }
 //
 function show_whole_list() {
@@ -691,7 +721,7 @@ function listOfEvents() {
     var eventsListOutput;
     eventsListOutput = '';
     for (var i = 0; i < Events.length; i++) {
-        eventsListOutput += '<li class="eventItem" id="' + Events[i] + '"><a href="#"  style="font-size:10; color: white; color: black;-webkit-text-fill-color: white;-webkit-text-stroke-width: 0.05px;-webkit-text-stroke-color: black;">' + adjust_string(Events[i], 49) + '</a></li> <li id="none" class="divider"></li>';
+        eventsListOutput += '<li class="eventItem" id="' + Events[i] + '"><a href="#"  style="font-size:10; color: white; color: black;-webkit-text-fill-color: white;-webkit-text-stroke-width: 0.05px;-webkit-text-stroke-color: black; border-bottom: thin solid white;">' + adjust_string(Events[i], 49) + '</a></li> ';
     }
     document.getElementById("list_of_events").innerHTML = eventsListOutput;
 }
