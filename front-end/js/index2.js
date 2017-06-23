@@ -237,8 +237,6 @@ $.getJSON(link)
         })
 
 
-
-
         $('#datetimepicker4').on('dp.change', function(e) {
             clear_layers();
             plot_loop(dictionary2);
@@ -497,78 +495,45 @@ function compare_time(t1, t2) {
     return 0;
 }
 
-//when 2nd & 3rd parameters are null checks with today's date
-function is_valid_date(eventTiming, userStartTiming, userEndTiming) //ex: "2017-06-07 00:00:00 2017-05-21 00:00:00",06/14/2017 12:00 AM,06/28/2017 12:00 AM
+//when 2nd parameter is empty checks with today's date
+function is_valid_date(eventTiming, userStartTiming, userEndTiming)
 {
-    if (userStartTiming != '' && userEndTiming == '') {
-        userEndTiming = "02/26/4498 12:10 AM";
+     var today = new Date();
+    if ( userEndTiming == '') {
+    userEndTiming = "02/26/4498 12:01 AM";
     }
-    if (userStartTiming == '' && userEndTiming != '') {
-        userStartTiming = "03/01/0000 12:10 AM"
+    if (userStartTiming == '' ) {
+        userStartTiming = today;
     }
-    var today = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
-    var currentTime = new Date().toJSON().slice(11, 16);
-    currentTime = to_12H(currentTime);
-    //eventTiming = $.trim(eventTiming);
-   // var eventSplit = eventTiming.split(" ");
+    var eventStartTiming = eventTiming[1];
+    var eventEndTiming = eventTiming[0];
     var eventStartTiming = eventTiming[1];
     var eventEndTiming = eventTiming[0];
 
     var eventStartTimingSplit = eventStartTiming.split(" ");
     var eventEndTimingSplit = eventEndTiming.split(" ");
 
-    var eventStartDate = eventStartTimingSplit[0];
-    var eventEndDate = eventEndTimingSplit[0];
+    var eventStartDate = convert_date_format(eventStartTimingSplit[0]);
+    var eventEndDate = convert_date_format(eventEndTimingSplit[0]);
     //Convert event time from 24H to 12H   
     var eventEndTime = to_12H(eventEndTimingSplit[1]);
     var eventStartTime = to_12H(eventStartTimingSplit[1]);
-    if (moment(eventEndDate, 'YYYY-MM-DD') < moment(eventStartDate, 'YYYY-MM-DD')) {
-        return false;
-    }
-    if (moment(eventEndDate, 'YYYY-MM-DD') >= moment(eventStartDate, 'YYYY-MM-DD') && moment(eventEndDate, 'YYYY-MM-DD') <= moment(eventStartDate, 'YYYY-MM-DD') &&
-        (compare_time(eventStartTime, eventEndTime) == 1)) {
-        return false;
-    }
-    if ((userStartTiming == null || userStartTiming == "") && (userEndTiming == null || userEndTiming == "")) {
-        if (moment(today, 'YYYY/MM/DD') > moment(eventEndDate, 'YYYY-MM-DD')) {
-            return false;
-        }
-        if (moment(today, 'YYYY/MM/DD') >= moment(eventEndDate, 'YYYY-MM-DD') && moment(today, 'YYYY/MM/DD') <= moment(eventEndDate, 'YYYY-MM-DD') && compare_time(eventEndTime, currentTime) == 1) {
-            return false;
-        }
-        return true;
-    }
-    var userStartTimingSplit = userStartTiming.split(" ");
-    var userStartDate = userStartTimingSplit[0];
-    var userStartTime = userStartTimingSplit[1] + " " + userStartTimingSplit[2];
-    var userEndTimingSplit = userEndTiming.split(" ");
-    var userEndDate = userEndTimingSplit[0];
-    var userEndTime = userEndTimingSplit[1] + " " + userEndTimingSplit[2];
-    if ((moment(userEndDate, 'MM/DD/YYYY') < moment(userStartDate, 'MM/DD/YYYY'))) {
-        alert("Not a valid time span");
-    }
-    if (moment(userEndDate, 'MM/DD/YYYY') >= moment(userStartDate, 'MM/DD/YYYY') && moment(userEndDate, 'MM/DD/YYYY') <= moment(userStartDate, 'MM/DD/YYYY') &&
-        compare_time(userStartTime, userEndTime) == 1) {
-        alert("Not a valid time span");
-    }
-    if (moment(userEndDate, 'MM/DD/YYYY') >= moment(userStartDate, 'MM/DD/YYYY') && moment(userEndDate, 'MM/DD/YYYY') <= moment(userStartDate, 'MM/DD/YYYY') &&
-        compare_time(userStartTime, userEndTime) == 1) {
-        alert("Not a valid time span");
-    }
-
-    if (moment(userStartDate, 'MM/DD/YYYY') >= moment(eventStartDate, 'YYYY-MM-DD') && moment(userStartDate, 'MM/DD/YYYY') <= moment(eventStartDate, 'YYYY-MM-DD') &&
-        (compare_time(userStartTime, eventStartTime) == 1)) {
-        return false;
-    }
-    if (moment(userEndDate, 'MM/DD/YYYY') >= moment(eventEndDate, 'YYYY-MM-DD') && moment(userEndDate, 'MM/DD/YYYY') <= moment(eventEndDate, 'YYYY-MM-DD') &&
-        (compare_time(userEndTime, eventEndTime) == 2)) {
-        return false;
-    }
-    return moment(userStartDate, 'MM/DD/YYYY') <= moment(eventEndDate, 'YYYY-MM-DD') &&
-        moment(eventStartDate, 'YYYY-MM-DD') <= moment(userEndDate, 'MM/DD/YYYY') &&
-        moment(userEndDate, 'MM/DD/YYYY') >= moment(eventEndDate, 'YYYY-MM-DD') &&
-        moment(eventStartDate, 'YYYY-MM-DD') >= moment(userStartDate, 'MM/DD/YYYY');
+    eventStartTiming = eventStartDate+" "+eventStartTime;
+    eventEndTiming = eventEndDate+" "+eventEndTime;
+    var eventStartTiming2= new Date(Date.parse($.trim(eventStartTiming))).getTime();
+    var eventEndTiming2 = new Date(Date.parse($.trim(eventEndTiming))).getTime();
+    var userStartTiming2 = new Date(Date.parse($.trim(userStartTiming))).getTime();
+    var userEndTiming2 = new Date(Date.parse($.trim(userEndTiming))).getTime();
+    if(userStartTiming2>userEndTiming2){alert("Not a valid time span");return;}
+    if(eventStartTiming2>eventEndTiming2){return false;}
+    return userStartTiming2<=eventEndTiming2 && eventStartTiming2<=userEndTiming2
+    && userEndTiming2>=eventEndTiming2 && eventStartTiming2>=userStartTiming2;
 }
+
+
+
+
+
 //converts date from YYYY-MM-DD to MM/DD/YYYY
 function convert_date_format(date) {
     var string = date.split('-');
@@ -579,14 +544,17 @@ function convert_date_format(date) {
 function plot_marker(eventDict, eventsSeenArr) {
 
     var string = '';
-    //  console.log(eventDict.name);
-    // console.log("test",eventDict.test==null );
-    var eventDate = $.trim(eventDict.date);
-    eventDate = eventDate.split(" ");
-    var eventEndDate = eventDate[0];
-    var eventEndTime = eventDate[1];
-    var eventStartDate = eventDate[2];
-    var eventStartTime = eventDate[3];
+    var eventDate = eventDict.date;
+    var eventEndTiming = eventDate[0];
+    var eventEndTimingSplit = eventEndTiming.split(" ");
+    var eventEndDate = eventEndTimingSplit[0];
+    var eventEndTime = eventEndTimingSplit[1];
+
+    var eventStartTiming = eventDate[1];
+    var eventStartTimingSplit = eventStartTiming.split(" ");
+    var eventStartDate = eventStartTimingSplit[0];
+    var eventStartTime = eventStartTimingSplit[1];
+
     if (eventStartTime == "00:00:00") {
         eventStartTime = null;
     }
@@ -625,7 +593,6 @@ function plot_marker(eventDict, eventsSeenArr) {
     var event_icon = iconArr[eventIndx];
     var mapArr = eval(color_array[eventIndx] + 'Arr');
     var mapLayer = eval(color_array[eventIndx] + 'Layer');
-    //console.log("plot location",eventDict.location);
     var marker = L.marker(eventDict.location, {
         title: eventDict.title,
         icon: event_icon
